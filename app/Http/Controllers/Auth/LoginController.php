@@ -19,6 +19,7 @@ class LoginController extends Controller
     |
     */
 
+    /* トレイトを読み込む */
     use AuthenticatesUsers;
 
     /**

@@ -21,7 +21,8 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
+    
+    /* トレイトを読み込む */
     use RegistersUsers;
 
     /**
