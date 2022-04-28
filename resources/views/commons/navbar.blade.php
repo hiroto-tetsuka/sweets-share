@@ -11,8 +11,12 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 @if (Auth::check())
-                    {{-- アイコンと投稿ボタンを設置 --}}
-                    
+                    {{-- ユーザ一覧 --}}
+                    <li class="nav-item">{!! link_to_route('users.index', 'ユーザ一覧', [], ['class' => 'nav-link']) !!}</li>
+                    {{-- 投稿ボタン --}}
+                    <li class="nav-item">{!! link_to_route('posts.create', '投稿', [], ['class' => 'nav-link']) !!}</li>
+                    {{-- ユーザアイコン --}}
+                    <li class="nav-item">{!! link_to_route('users.show', 'アイコン', ['user' => Auth::id()]) !!}</li>
                 @else
                     {{-- ユーザ登録ページへのリンク --}}
                     <li class="nav-item">{!! link_to_route('signup.get', '新規登録', [], ['class' => 'nav-link']) !!}</li>
