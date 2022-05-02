@@ -13,13 +13,11 @@
                     </div>
                     <div class="card-body">
                         {{-- 認証済みユーザのメールアドレスをもとにGravatarを取得して表示 --}}
-                        <img class="rounded img-fluid" src="{{ Gravatar::get(Auth::user()->email, ['size' => 500]) }}" alt="">
+                        <img class="rounded img-fluid" src="{{ Gravatar::get(Auth::user()->email, ['size' => 100]) }}" alt="">
                     </div>
                 </div>
             </aside>
             <div class="col-sm-8">
-                {{-- 投稿フォーム --}}
-                @include('posts.form')
                 {{-- 投稿一覧 --}}
                 @include('posts.posts')
             </div>

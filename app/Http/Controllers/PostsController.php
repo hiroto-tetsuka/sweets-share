@@ -39,21 +39,11 @@ class PostsController extends Controller
     
     public function store(Request $request)
     {
-        // // バリデーション
-        // $request->validate([
-        //     'comment' => 'required|max:40',
-        // ]);
-
-        // // 認証済みユーザ（閲覧者）の投稿として作成（リクエストされた値をもとに作成）
-        // $request->user()->posts()->create([
-        //     'comment' => $request->comment,
-        // ]);
-
-        // // 前のURLへリダイレクトさせる
-        // return back();
+        $file_name = $request->sweets_image->getClientOriginalName();
+        $request->sweets_image->storeAs('public', $file_name);
         
         $request->validate([
-            'image' => 'required',
+            'sweets_image' => 'required',
             'sweets_name' => 'required|max:20',
             'store_name' => 'required|max:20',
             'station' => 'required|max:20',
@@ -61,7 +51,7 @@ class PostsController extends Controller
         ]);
         
         $post = new Post;
-        $post->image = $request->image;
+        $post->sweets_image = $request->sweets_image;
         $post->sweets_name = $request->sweets_name;
         $post->store_name = $request->store_name;
         $post->station = $request->station;

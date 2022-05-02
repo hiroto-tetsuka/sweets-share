@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePostsTable extends Migration
+class CreateUserFollowTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,18 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('user_follow', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->string('sweets_image');
-            $table->string('sweets_name');
-            $table->string('store_name');
-            $table->string('station');
-            $table->string('comment');
+            $table->unsignedBigInteger('follow_id');
             $table->timestamps();
             
             // 外部キー制約
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('follow_id')->references('id')->on('users')->onDelete('cascade');
+
+            // user_idとfollow_idの組み合わせの重複を許さない
+            $table->unique(['user_id', 'follow_id']);
         });
     }
 
@@ -35,6 +35,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('user_follow');
     }
 }

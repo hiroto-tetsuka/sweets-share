@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable = ['content'];
+    protected $fillable = ['comment'];
 
     /**
      * この投稿を所有するユーザ。（ Userモデルとの関係を定義）

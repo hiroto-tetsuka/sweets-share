@@ -46,10 +46,80 @@ class User extends Authenticatable
     }
     
     /**
+     * このユーザがフォロー中のユーザ。（ Userモデルとの関係を定義）
+     */
+    public function followings()
+    {
+        return $this->belongsToMany(User::class, 'user_follow', 'user_id', 'follow_id')->withTimestamps();
+    }
+
+    /**
+     * このユーザをフォロー中のユーザ。（ Userモデルとの関係を定義）
+     */
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'user_follow', 'follow_id', 'user_id')->withTimestamps();
+    }
+    
+    /**
      * このユーザに関係するモデルの件数をロードする。
      */
     public function loadRelationshipCounts()
     {
         $this->loadCount('posts');
+    }
+    
+    // フォロー機能
+    public function follow($userId)
+    {
+        // すでにフォローしているか
+        $exist = $this->is_following($userId);
+        // 自身かどうか
+        $its_me = $this->id == $userId;
+        
+        if($exist || $its_me){
+            // フォロー済み、または自身の場合は何もしない
+            return false;
+        }else{
+            // 上記以外はフォローする
+            $this->followings()->attach($userId);
+            return true;
+            
+            // こっちでは動かない？
+            // $userModel = new User;
+            // $userModel->id = $userId;
+            // $userModel->save();
+            // return true;
+        }
+    }
+    
+    // アンフォロー機能
+    public function unfollow($userId)
+    {
+        // すでにフォローしているか
+        $exist = $this->is_following($userId);
+        // 自身かどうか
+        $its_me = $this->id == $userId;
+        
+        if($exist && !$its_me){
+            // ファロー済み、かつ自身でない場合はフォローを外す
+            $this->followings()->detach($userId);
+            return true;
+            
+            // こっちでは動かない？
+            // $userModel = new User;
+            // $userModel->id = $userId;
+            // $userModel->save();
+            // return true;
+        }else{
+            // 上記以外は何もしない
+            return false;
+        }
+    }
+    
+    // すでにフォローしていればtrueを返す
+    public function is_following($userId)
+    {
+        return $this->followings()->where('follow_id', $userId)->exists();
     }
 }

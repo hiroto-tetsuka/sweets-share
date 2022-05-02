@@ -10,8 +10,8 @@
 
             {!! Form::open(['route' => 'posts.store']) !!}
                 <div class="form-group">
-                    {!! Form::label('image', 'スイーツの写真') !!}
-                    {!! Form::file('image', null, ['class' => 'form-control']) !!}
+                    {!! Form::label('sweets_image', 'スイーツの写真') !!}
+                    {!! Form::file('sweets_image', null, ['class' => 'form-control']) !!}
                 </div>
 
                 <div class="form-group">

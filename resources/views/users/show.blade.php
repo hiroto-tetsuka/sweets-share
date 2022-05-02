@@ -9,7 +9,7 @@
                 </div>
                 <div class="card-body">
                     {{-- ユーザのメールアドレスをもとにGravatarを取得して表示 --}}
-                    <img class="rounded img-fluid" src="{{ Gravatar::get($user->email, ['size' => 500]) }}" alt="">
+                    <img class="rounded img-fluid" src="{{ Gravatar::get($user->email, ['size' => 100]) }}" alt="">
                 </div>
             </div>
         </aside>
@@ -27,10 +27,6 @@
                 {{-- フォロワー一覧タブ --}}
                 <li class="nav-item"><a href="#" class="nav-link">フォロワー</a></li>
             </ul>
-            @if (Auth::id() == $user->id)
-                {{-- 投稿フォーム --}}
-                @include('posts.form')
-            @endif
             {{-- 投稿一覧 --}}
             @include('posts.posts')
         </div>
