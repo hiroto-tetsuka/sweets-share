@@ -12,7 +12,10 @@
                     </div>
                     <div>
                         {{-- 投稿内容 --}}
-                        
+                        <img src="{{ asset('storage/' . $post->sweets_image) }}" alt="">
+                        <p class="mb-0">{!! nl2br(e($post->sweets_name)) !!}</p>
+                        <p class="mb-0">{!! nl2br(e($post->store_name)) !!}</p>
+                        <p class="mb-0">{!! nl2br(e($post->station)) !!}</p>
                         <p class="mb-0">{!! nl2br(e($post->comment)) !!}</p>
                     </div>
                     <div>
@@ -27,6 +30,4 @@
             </li>
         @endforeach
     </ul>
-    {{-- ページネーションのリンク --}}
-    {{ $posts->links() }}
 @endif

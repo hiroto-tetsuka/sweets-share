@@ -16,6 +16,4 @@
             </li>
         @endforeach
     </ul>
-    {{-- ページネーションのリンク --}}
-    {{ $users->links() }}
 @endif

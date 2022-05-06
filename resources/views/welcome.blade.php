@@ -28,5 +28,9 @@
                 <h4>気に入ったスイーツをシェアしよう！</h4>
             </div>
         </div>
+        <div class="col-sm-8">
+            {{-- 投稿一覧 
+            @include('posts.posts')--}}
+        </div>
     @endif
 @endsection

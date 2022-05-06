@@ -16,7 +16,7 @@ class PostsController extends Controller
             $user = \Auth::user();
             // ユーザの投稿の一覧を作成日時の降順で取得
             // （後のChapterで他ユーザの投稿も取得するように変更しますが、現時点ではこのユーザの投稿のみ取得します）
-            $posts = $user->posts()->orderBy('created_at', 'desc')->paginate(10);
+            $posts = $user->feed_posts()->orderBy('created_at', 'desc')->get();
 
             $data = [
                 'user' => $user,
@@ -39,7 +39,10 @@ class PostsController extends Controller
     
     public function store(Request $request)
     {
+        // 画像を取得
         $file_name = $request->sweets_image->getClientOriginalName();
+        
+        // 画像を保存
         $request->sweets_image->storeAs('public', $file_name);
         
         $request->validate([
@@ -51,13 +54,23 @@ class PostsController extends Controller
         ]);
         
         $post = new Post;
-        $post->sweets_image = $request->sweets_image;
+        $post->sweets_image = $file_name;
+        $post->user_id = $request->user_id;
         $post->sweets_name = $request->sweets_name;
         $post->store_name = $request->store_name;
         $post->station = $request->station;
+        $post->comment = $request->comment;
         $post->save();
         
-        return redirect('/');
+        $user = \Auth::user();
+        $posts = $user->posts()->orderBy('created_at', 'desc')->paginate(10);
+        
+        // 投稿一覧を表示するページに変数を渡す
+        return view('welcome')
+        // $file_nameをsweets_imageに格納し、posts.postsファイルで使えるようにする
+        ->with('sweets_image', $file_name)
+        // $postsをpostsに格納し、posts.postsファイルで使えるようにする
+        ->with('posts',  $posts);
     }
     
     public function destroy($id)

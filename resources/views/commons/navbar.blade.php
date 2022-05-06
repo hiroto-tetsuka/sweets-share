@@ -16,7 +16,7 @@
                     {{-- 投稿ボタン --}}
                     <li class="nav-item">{!! link_to_route('posts.create', '投稿', [], ['class' => 'nav-link']) !!}</li>
                     {{-- ユーザアイコン --}}
-                    <li class="nav-item">{!! link_to_route('users.show', 'アイコン', ['user' => Auth::id()]) !!}</li>
+                    <li class="nav-item">{!! link_to_route('users.show', 'マイページ', ['user' => Auth::id()], ['class' => 'nav-link']) !!}</li>
                 @else
                     {{-- ユーザ登録ページへのリンク --}}
                     <li class="nav-item">{!! link_to_route('signup.get', '新規登録', [], ['class' => 'nav-link']) !!}</li>

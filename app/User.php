@@ -66,7 +66,7 @@ class User extends Authenticatable
      */
     public function loadRelationshipCounts()
     {
-        $this->loadCount('posts');
+        $this->loadCount(['posts', 'followings', 'followers']);
     }
     
     // フォロー機能
@@ -121,5 +121,16 @@ class User extends Authenticatable
     public function is_following($userId)
     {
         return $this->followings()->where('follow_id', $userId)->exists();
+    }
+    
+    // 自身とフォロー中のユーザの投稿だけに絞る
+    public function feed_posts()
+    {
+        // このユーザがフォロー中のユーザのidを取得して配列にする
+        $userIds = $this->followings()->pluck('users.id')->toArray();
+        // このユーザのidもその配列に追加
+        $userIds[] = $this->id;
+        // それらのユーザが所有する投稿に絞り込む
+        return Post::whereIn('user_id', $userIds);
     }
 }
