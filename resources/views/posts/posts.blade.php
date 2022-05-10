@@ -25,13 +25,13 @@
                         @if (Auth::user()->is_favorite($post->id))
                             {{-- いいね解除ボタン --}}
                             {!! Form::open(['route' => ['favorites.unfavorite', $post->id], 'method' => 'delete']) !!}
-                                {!! Form::submit('いいね解除', ['class' => 'btn btn-warning btn-sm']) !!}
+                                {!! Form::submit('❤', ['class' => 'btn btn-warning btn-sm']) !!}
                                 <input type='hidden' name='post_id' value="{{$post->id}}">
                             {!! Form::close() !!}
                         @else
                             {{-- いいねボタン --}}
                             {!! Form::open(['route' => ['favorites.favorite', $post->id], 'method' => 'post']) !!}
-                                {!! Form::submit('いいね', ['class' => 'btn btn-success btn-sm']) !!}
+                                {!! Form::submit('♡', ['class' => 'btn btn-success btn-sm']) !!}
                                 <input type='hidden' name='post_id' value="{{$post->id}}">
                             {!! Form::close() !!}
                         @endif

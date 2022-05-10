@@ -20,14 +20,14 @@
             </div>
         </div>
     @else
-        <div class="home_text">
+        <div class="home-text">
             <h4>お気に入りのスイーツをシェアしよう！</h4>
         </div>
         {{-- 全投稿の画像だけを一覧で表示 --}}
-        <div class="before_signup_img">
+        <div class="before-signup-img">
             @foreach($posts as $post)
                 {{-- 画像をクリックしたら新規登録画面を表示 --}}
-                <a href="{{route('login')}}"><img src="{{ asset('storage/' . $post->sweets_image) }}" alt=""></a>
+                <a href="{{route('login')}}"><img src="{{ asset('storage/' . $post->sweets_image) }}" alt="" class="top-img"></a>
             @endforeach
         </div>
     @endif
