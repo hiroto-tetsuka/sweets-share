@@ -2,9 +2,6 @@
 
 @section('content')
     @if(Auth::check())
-        ようこそ、{{Auth::user()->name}}さん！
-        {{-- ログアウトへのリンク --}}
-        {!! link_to_route('logout.get', 'Logout') !!}
         <div class="row">
             <aside class="col-sm-4">
                 <div class="card">
@@ -23,14 +20,15 @@
             </div>
         </div>
     @else
-        <div class="center jumbotron">
-            <div class="text-center">
-                <h4>気に入ったスイーツをシェアしよう！</h4>
-            </div>
+        <div class="home_text">
+            <h4>お気に入りのスイーツをシェアしよう！</h4>
         </div>
-        <div class="col-sm-8">
-            {{-- 投稿一覧 
-            @include('posts.posts')--}}
+        {{-- 全投稿の画像だけを一覧で表示 --}}
+        <div class="before_signup_img">
+            @foreach($posts as $post)
+                {{-- 画像をクリックしたら新規登録画面を表示 --}}
+                <a href="{{route('login')}}"><img src="{{ asset('storage/' . $post->sweets_image) }}" alt=""></a>
+            @endforeach
         </div>
     @endif
 @endsection

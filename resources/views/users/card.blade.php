@@ -7,5 +7,11 @@
         <img class="rounded img-fluid" src="{{ Gravatar::get($user->email, ['size' => 500]) }}" alt="">
     </div>
 </div>
+
 {{-- フォロー／アンフォローボタン --}}
 @include('user_follow.follow_button')
+
+{{-- ログアウトボタン --}}
+@if(Auth::id() == $user->id)
+    <a href="{{route('logout.get')}}" class="btn btn_logout">ログアウト</a>
+@endif

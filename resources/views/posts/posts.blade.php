@@ -8,15 +8,33 @@
                     <div>
                         {{-- 投稿の所有者のユーザ詳細ページへのリンク --}}
                         {!! link_to_route('users.show', $post->user->name, ['user' => $post->user->id]) !!}
-                        <span class="text-muted">posted at {{ $post->created_at }}</span>
+                    </div>
+                    <div>
+                        <span class="text-muted">{{ $post->created_at }}</span>
                     </div>
                     <div>
                         {{-- 投稿内容 --}}
-                        <img src="{{ asset('storage/' . $post->sweets_image) }}" alt="">
+                        {{-- 画像をクリックしたら投稿の詳細ページを表示 --}}
+                        <a href="#"><img src="{{ asset('storage/' . $post->sweets_image) }}" alt=""></a>
                         <p class="mb-0">{!! nl2br(e($post->sweets_name)) !!}</p>
                         <p class="mb-0">{!! nl2br(e($post->store_name)) !!}</p>
                         <p class="mb-0">{!! nl2br(e($post->station)) !!}</p>
                         <p class="mb-0">{!! nl2br(e($post->comment)) !!}</p>
+                    </div>
+                    <div>
+                        @if (Auth::user()->is_favorite($post->id))
+                            {{-- いいね解除ボタン --}}
+                            {!! Form::open(['route' => ['favorites.unfavorite', $post->id], 'method' => 'delete']) !!}
+                                {!! Form::submit('いいね解除', ['class' => 'btn btn-warning btn-sm']) !!}
+                                <input type='hidden' name='post_id' value="{{$post->id}}">
+                            {!! Form::close() !!}
+                        @else
+                            {{-- いいねボタン --}}
+                            {!! Form::open(['route' => ['favorites.favorite', $post->id], 'method' => 'post']) !!}
+                                {!! Form::submit('いいね', ['class' => 'btn btn-success btn-sm']) !!}
+                                <input type='hidden' name='post_id' value="{{$post->id}}">
+                            {!! Form::close() !!}
+                        @endif
                     </div>
                     <div>
                         @if (Auth::id() == $post->user_id)

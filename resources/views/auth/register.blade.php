@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="register">
     <div class="text-center">
         <h1>新規登録</h1>
     </div>
@@ -32,8 +33,9 @@
                 {!! Form::submit('新規登録', ['class' => 'btn btn-primary btn-block']) !!}
             {!! Form::close() !!}
             
-            <p class="mt-2">すでに登録している方は {!! link_to_route('signup.get', 'ログイン') !!}</p>
+            <p class="mt-2">すでに登録している方は {!! link_to_route('login.post', 'ログイン') !!}</p>
             
         </div>
     </div>
+</div>
 @endsection

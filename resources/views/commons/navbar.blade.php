@@ -1,5 +1,5 @@
 <header class="mb-4">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-info">
         {{-- トップページへのリンク --}}
         <a class="navbar-brand" href="/">スイーツシェア</a>
 
@@ -15,7 +15,7 @@
                     <li class="nav-item">{!! link_to_route('users.index', 'ユーザ一覧', [], ['class' => 'nav-link']) !!}</li>
                     {{-- 投稿ボタン --}}
                     <li class="nav-item">{!! link_to_route('posts.create', '投稿', [], ['class' => 'nav-link']) !!}</li>
-                    {{-- ユーザアイコン --}}
+                    {{-- マイページ --}}
                     <li class="nav-item">{!! link_to_route('users.show', 'マイページ', ['user' => Auth::id()], ['class' => 'nav-link']) !!}</li>
                 @else
                     {{-- ユーザ登録ページへのリンク --}}

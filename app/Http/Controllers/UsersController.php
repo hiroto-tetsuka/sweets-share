@@ -60,6 +60,7 @@ class UsersController extends Controller
     // フォロワー一覧を表示するアクション
     public function followers($id)
     {
+        
         $user = User::findOrFail($id);
         
         $user->loadRelationshipCounts();
@@ -69,6 +70,24 @@ class UsersController extends Controller
         return view('users.followers', [
             'user' => $user,
             'users' => $followers,
+        ]);
+    }
+    
+    // いいね一覧を取得してビューに渡す
+    public function favorites($id)
+    {
+        // 空配列を用意
+        $user = [];
+        // idが一致するユーザを取得
+        $user = User::findOrFail($id);
+        // ユーザの件数をロード
+        $user->loadRelationshipCounts();
+        // ユーザのいいね一覧を取得
+        $posts = $user->feed_favorites()->get();
+        // いいね一覧をビューで表示
+        return view('users.favorites', [
+            'user' => $user,
+            'posts' => $posts,
         ]);
     }
 }

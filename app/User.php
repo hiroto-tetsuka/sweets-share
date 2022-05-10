@@ -66,7 +66,7 @@ class User extends Authenticatable
      */
     public function loadRelationshipCounts()
     {
-        $this->loadCount(['posts', 'followings', 'followers']);
+        $this->loadCount(['posts', 'followings', 'followers', 'favorites']);
     }
     
     // フォロー機能
@@ -132,5 +132,67 @@ class User extends Authenticatable
         $userIds[] = $this->id;
         // それらのユーザが所有する投稿に絞り込む
         return Post::whereIn('user_id', $userIds);
+    }
+    
+    // このユーザがいいねする投稿（favoritesテーブルとPostモデルの関係を定義）
+    // いいね一覧を取得できる関数を作る
+    public function favorites()
+    {
+        return $this->belongsToMany(Post::class, 'favorites', 'user_id', 'post_id')->withTimestamps();
+    }
+    
+    // いいね機能の定義
+    public function favorite($user_id, $post_id)
+    {
+        // すでにいいねしていたらtrueを返す
+        $exist = $this->is_favorite($post_id);
+        if($exist == true){
+            return;
+        }else{
+            // Favoritesクラスをインスタンス化
+            $favoritesModel = new Favorites();
+            // user_idをレコードに追加
+            $favoritesModel->user_id = $user_id;
+            // post_idをレコードに追加
+            $favoritesModel->post_id = $post_id;
+            // テーブルを保存
+            $favoritesModel->save();
+            
+            return;
+        }
+    }
+    
+    // いいね解除機能の定義
+    public function unfavorite($user_id, $post_id)
+    {
+        // すでにいいねしていたらtrueを返す
+        $exist = $this->is_favorite($post_id);
+        if($exist == true){
+            // Favoritesクラスをインスタンス化
+            $favoritesModel = new Favorites();
+            // user_idとpost_idが一致していていいねされている投稿をテーブルから削除
+            $favoritesModel
+            ->where('user_id', $user_id)
+            ->where('post_id', $post_id)
+            ->delete();
+        }else{
+            return;
+        }
+    }
+    
+    // すでにいいねしている投稿か調べる
+    public function is_favorite($post_id)
+    {
+        // すでにいいねされていたらtrueを返す
+        return $this->favorites()->where('post_id', $post_id)->exists();
+    }
+    
+    // いいねした投稿だけを表示する
+    public function feed_favorites()
+    {
+        // ユーザがいいねした投稿を配列で取得
+        $favoriteIds = $this->favorites()->pluck('posts.id')->toArray();
+        // このユーザがいいねした投稿に絞り込む
+        return Post::whereIn('id', $favoriteIds);
     }
 }
