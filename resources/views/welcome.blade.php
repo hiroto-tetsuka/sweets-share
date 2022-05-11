@@ -1,35 +1,36 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- ログインが確認できたら --}}
+    {{-- ログインが確認できたときのトップページ --}}
     @if(Auth::check())
-        <div class="row">
-            <aside class="col-sm-4">
-                <div class="card">
-                    <div class="card-header">
-                        {{-- ログインしたユーザのユーザ名を表示 --}}
+        <div>
+            <aside>
+                <div>
+                    <div>
+                        {{-- ログインしたユーザのユーザ名 --}}
                         <h3>{{ Auth::user()->name }}</h3>
                     </div>
-                    <div class="card-body">
-                        {{-- ログインしたユーザのアイコンを表示 --}}
+                    <div>
+                        {{-- ログインしたユーザのアイコン --}}
                         <img src="{{asset('storage/sample.jpeg')}}" alt="">
                     </div>
                 </div>
             </aside>
-            <div class="col-sm-8">
+            <div>
                 {{-- 投稿一覧 --}}
                 @include('posts.posts')
             </div>
         </div>
+    {{-- ログインが確認できなかったときのトップページ --}}
     @else
-        <div class="home-text">
+        <div>
             <h4>お気に入りのスイーツをシェアしよう！</h4>
         </div>
-        {{-- 全投稿の画像だけを一覧で表示 --}}
-        <div class="before-signup-img">
+        {{-- すべての投稿の画像だけを一覧で表示 --}}
+        <div>
             @foreach($posts as $post)
                 {{-- 画像をクリックしたら新規登録画面を表示 --}}
-                <a href="{{route('login')}}"><img src="{{ asset('storage/' . $post->sweets_image) }}" alt="" class="top-img"></a>
+                <a href="{{route('login')}}"><img src="{{ asset('storage/' . $post->sweets_image) }}" alt=""></a>
             @endforeach
         </div>
     @endif
