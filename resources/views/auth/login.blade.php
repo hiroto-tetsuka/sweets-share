@@ -7,19 +7,18 @@
     </div>
     <div>
         <div>
-            {!! Form::open(['route' => 'login.post']) !!}
+            <form action="{{url('/login')}}" method="post">
+                @csrf
                 <div>
-                    {!! Form::label('email', 'メールアドレス') !!}
-                    {!! Form::email('email', null, ['class' => 'form-control']) !!}
+                    <p>メールアドレス<input type="email" id="email" name="email" placeholder="sample@mail.com"></p>
                 </div>
                 <div>
-                    {!! Form::label('password', 'パスワード') !!}
-                    {!! Form::password('password', ['class' => 'form-control']) !!}
+                    <p>パスワード<input type="password" id="password" name="password" placeholder="8文字以上"></p>
                 </div>
-                {!! Form::submit('ログイン', ['class' => 'btn btn-primary btn-block']) !!}
-            {!! Form::close() !!}
-            {{-- ユーザ登録ページへのリンク --}}
-            <p>登録がまだの方は {!! link_to_route('signup.get', '新規登録') !!}</p>
+                <input type="submit" id="submit" name="submit" value="ログイン">
+            </form>
+            {{-- 新規登録ページへのリンク --}}
+            <p>登録がまだの方は<a href="{{asset('signup')}}">こちら</a></p>
         </div>
     </div>
 </div>
