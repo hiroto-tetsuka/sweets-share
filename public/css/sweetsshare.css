@@ -1,7 +1,10 @@
 /* ページ全体 */
 
-html {
+* {
     background-color: #fcf47c;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
 }
 ul {
     list-style: none;

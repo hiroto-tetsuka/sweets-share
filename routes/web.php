@@ -29,12 +29,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('favorites', 'UsersController@favorites')->name('users.favorites');
     });
     
-    Route::group(['prefix' => 'posts/{id}'], function () {
-        Route::post('favorite', 'FavoritesController@store')->name('favorites.favorite');
-        Route::delete('unfavorite', 'FavoritesController@delete')->name('favorites.unfavorite');
-    });
+        Route::post('posts/{id}/favorite', 'FavoritesController@store');
+        Route::post('posts/{id}/unfavorite', 'FavoritesController@delete');
     
-    Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
-    // Route::resource('posts', 'PostsController', ['only' => ['store', 'destroy']]);
-    Route::resource('posts', 'PostsController');
+    Route::get('users/index', 'UsersController@index');
+    Route::get('users/show/{id}', 'UsersController@show');
+    Route::get('posts/create', 'PostsController@create');
+    Route::post('posts/store/{id}', 'PostsController@store');
+    Route::post('posts/destroy/{id}', 'PostsController@destroy');
 });

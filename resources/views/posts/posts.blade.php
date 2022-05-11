@@ -1,47 +1,52 @@
 @if (count($posts) > 0)
-    <ul class="list-unstyled">
+    <ul>
         @foreach ($posts as $post)
-            <li class="media mb-3">
+            <li>
                 {{-- 投稿の所有者のメールアドレスをもとにGravatarを取得して表示 --}}
-                <img class="mr-2 rounded" src="{{ Gravatar::get($post->user->email, ['size' => 50]) }}" alt="">
-                <div class="media-body">
+                <img src="{{ Gravatar::get($post->user->email, ['size' => 50]) }}" alt="">
+                <div>
                     <div>
                         {{-- 投稿の所有者のユーザ詳細ページへのリンク --}}
-                        {!! link_to_route('users.show', $post->user->name, ['user' => $post->user->id]) !!}
+                        <a href="{{asset('users/show/' . Auth::id())}}">{{ $post->user->name }}</a>
                     </div>
                     <div>
-                        <span class="text-muted">{{ $post->created_at }}</span>
+                        <span>{{ $post->created_at }}</span>
                     </div>
                     <div>
                         {{-- 投稿内容 --}}
                         {{-- 画像をクリックしたら投稿の詳細ページを表示 --}}
                         <a href="#"><img src="{{ asset('storage/' . $post->sweets_image) }}" alt=""></a>
-                        <p class="mb-0">{!! nl2br(e($post->sweets_name)) !!}</p>
-                        <p class="mb-0">{!! nl2br(e($post->store_name)) !!}</p>
-                        <p class="mb-0">{!! nl2br(e($post->station)) !!}</p>
-                        <p class="mb-0">{!! nl2br(e($post->comment)) !!}</p>
+                        <p>{!! nl2br(e($post->sweets_name)) !!}</p>
+                        <p>{!! nl2br(e($post->store_name)) !!}</p>
+                        <p>{!! nl2br(e($post->station)) !!}</p>
+                        <p>{!! nl2br(e($post->comment)) !!}</p>
                     </div>
                     <div>
                         @if (Auth::user()->is_favorite($post->id))
                             {{-- いいね解除ボタン --}}
-                            {!! Form::open(['route' => ['favorites.unfavorite', $post->id], 'method' => 'delete']) !!}
-                                {!! Form::submit('❤', ['class' => 'btn btn-warning btn-sm']) !!}
+                            <form action="{{url('/posts/'.$post->id.'/unfavorite')}}" method="post">
+                                @csrf
                                 <input type='hidden' name='post_id' value="{{$post->id}}">
-                            {!! Form::close() !!}
+                                <input type="submit" id="unfavorite" value="♥">
+                            </form>
                         @else
                             {{-- いいねボタン --}}
-                            {!! Form::open(['route' => ['favorites.favorite', $post->id], 'method' => 'post']) !!}
-                                {!! Form::submit('♡', ['class' => 'btn btn-success btn-sm']) !!}
+                            <form action="{{url('/posts/'.$post->id.'/favorite')}}" method="post">
+                                @csrf
                                 <input type='hidden' name='post_id' value="{{$post->id}}">
-                            {!! Form::close() !!}
+                                <input type="submit" id="favorite" value="♡">
+                            </form>
                         @endif
                     </div>
                     <div>
+                        {{-- ログイン中のidが投稿を所持しているユーザのidと一緒なら --}}
                         @if (Auth::id() == $post->user_id)
                             {{-- 投稿削除ボタンのフォーム --}}
-                            {!! Form::open(['route' => ['posts.destroy', $post->id], 'method' => 'delete']) !!}
-                                {!! Form::submit('削除', ['class' => 'btn btn-danger btn-sm']) !!}
-                            {!! Form::close() !!}
+                            <form action="{{asset('posts/destroy/' . $post->id)}}" method="post">
+                                @csrf
+                                <input type="submit" id="delete" name="delete" value="削除">
+                                <input type="hidden" name="post_id" value="{{$post->id}}">
+                            </form>
                         @endif
                     </div>
                 </div>

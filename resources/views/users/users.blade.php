@@ -10,7 +10,7 @@
                     </div>
                     <div>
                         {{-- ユーザ詳細ページへのリンク --}}
-                        <p>{!! link_to_route('users.show', 'ユーザ詳細', ['user' => $user->id]) !!}</p>
+                        <a href="{{asset('users/show/' . $user->id, ['user' => $user->id])}}">ユーザ詳細</a>
                     </div>
                 </div>
             </li>

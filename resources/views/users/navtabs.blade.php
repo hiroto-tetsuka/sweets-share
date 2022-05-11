@@ -1,7 +1,7 @@
 <ul class="nav nav-tabs nav-justified mb-3">
     {{-- ユーザ詳細タブ --}}
     <li class="nav-item">
-        <a href="{{ route('users.show', ['user' => $user->id]) }}" class="nav-link {{ Request::routeIs('users.show') ? 'active' : '' }}">
+        <a href="{{ asset('users/show/' . Auth::id(), ['user' => $user->id]) }}" class="nav-link {{ Request::routeIs('users.show') ? 'active' : '' }}">
             投稿
             <span class="badge badge-secondary">{{ $user->posts_count }}</span>
         </a>

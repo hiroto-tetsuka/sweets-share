@@ -22,7 +22,8 @@ class FavoritesController extends Controller
     }
     
     // いいねした投稿を削除
-    public function delete(Request $request){
+    public function delete(Request $request)
+    {
         // いいねした投稿のidを取得
         $post_id = $request->post_id;
         // すべてのユーザからログイン中のユーザを取得

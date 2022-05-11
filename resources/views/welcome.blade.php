@@ -26,11 +26,11 @@
         <div>
             <h4>お気に入りのスイーツをシェアしよう！</h4>
         </div>
-        {{-- すべての投稿の画像だけを一覧で表示 --}}
         <div>
+            {{-- すべての投稿の画像だけを一覧で表示 --}}
             @foreach($posts as $post)
                 {{-- 画像をクリックしたら新規登録画面を表示 --}}
-                <a href="{{route('login')}}"><img src="{{ asset('storage/' . $post->sweets_image) }}" alt=""></a>
+                <a href="{{asset('login')}}"><img src="{{ asset('storage/' . $post->sweets_image) }}" alt=""></a>
             @endforeach
         </div>
     @endif
