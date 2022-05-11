@@ -13,6 +13,9 @@ ul {
     display: flex;
     align-items: center;
 }
+.nav-logo {
+    width: 80%;
+}
 .navbar-nav {
     display: flex;
     justify-content: end;
@@ -24,7 +27,7 @@ ul {
     font-size: 20px;
 }
 
-/* トップページ */
+/* トップページ 
 
 .home-text {
     font-size: 30px;
@@ -42,7 +45,9 @@ ul {
     margin-left: 30px;
     margin-bottom: 30px;
 }
-/* 新規登録 */
+*/
+
+/* 新規登録
 .register {
     text-align: center;
     font-size: 30px;
@@ -58,3 +63,4 @@ ul {
 .form-group {
     justify-content: space-between;
 }
+*/
