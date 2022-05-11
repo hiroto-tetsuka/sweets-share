@@ -1,40 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="register">
-    <div class="text-center">
+<div>
+    <div>
         <h1>新規登録</h1>
     </div>
-
-    <div class="row">
-        <div class="col-sm-6 offset-sm-3">
-
-            {!! Form::open(['route' => 'signup.post']) !!}
-                <div class="form-group">
-                    {!! Form::label('name', 'ユーザ名') !!}
-                    {!! Form::text('name', null, ['class' => 'form-control']) !!}
+    <div>
+        <div>
+            <form action="{{asset('/signup')}}" method="post">
+                @csrf
+                <div>
+                    <p>ユーザ名<input type="text" id="name" name="name"></p>
                 </div>
-
-                <div class="form-group">
-                    {!! Form::label('email', 'メールアドレス') !!}
-                    {!! Form::email('email', null, ['class' => 'form-control']) !!}
+                <div>
+                    <p>メールアドレス<input type="email" id="email" name="email" placeholder="sample@mail.com"></p>
                 </div>
-
-                <div class="form-group">
-                    {!! Form::label('password', 'パスワード') !!}
-                    {!! Form::password('password', ['class' => 'form-control']) !!}
+                <div>
+                    <p>パスワード<input type="password" id="password" name="password" placeholder="8文字以上"></p>
                 </div>
-
-                <div class="form-group">
-                    {!! Form::label('password_confirmation', 'パスワード(確認)') !!}
-                    {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
+                <div>
+                    <p>パスワード(確認)<input type="password" id="password_confirmation" name="password_confirmation"></p>
                 </div>
-
-                {!! Form::submit('新規登録', ['class' => 'btn btn-primary btn-block']) !!}
-            {!! Form::close() !!}
-            
-            <p class="mt-2">すでに登録している方は {!! link_to_route('login.post', 'ログイン') !!}</p>
-            
+                <input type="submit" id="submit" name="submit" value="登録">
+            </form>
+            <p>すでに登録している方は<a href="{{asset('login')}}">こちら</a></p>
         </div>
     </div>
 </div>
