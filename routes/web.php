@@ -29,8 +29,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/favorites', 'UsersController@favorites')->name('users.favorites');
     });
     
-    Route::post('/posts/{id}/favorite', 'FavoritesController@store');
-    Route::post('/posts/{id}/unfavorite', 'FavoritesController@delete');
+    Route::get('/posts/favorite/{id}', 'FavoritesController@store');
+    Route::get('/posts/unfavorite/{id}', 'FavoritesController@delete');
     
     Route::get('/users/index', 'UsersController@index');
     Route::get('/users/show/{id}', 'UsersController@show');

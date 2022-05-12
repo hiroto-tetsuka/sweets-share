@@ -18,7 +18,8 @@ class FavoritesController extends Controller
         // ログイン中のユーザでいいねを実行
         $userModel->favorite($user_id, $post_id);
         
-        return back();
+        // return back();
+        return view('welcome');
     }
     
     // いいねした投稿を削除
@@ -33,6 +34,7 @@ class FavoritesController extends Controller
         // ログイン中のユーザでいいねを解除
         $userModel->unfavorite($user_id, $post_id);
         
-        return back();
+        // return back();
+        return view('welcome');
     }
 }

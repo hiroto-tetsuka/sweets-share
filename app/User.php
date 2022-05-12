@@ -175,6 +175,8 @@ class User extends Authenticatable
             ->where('user_id', $user_id)
             ->where('post_id', $post_id)
             ->delete();
+            
+            return;
         }else{
             return;
         }

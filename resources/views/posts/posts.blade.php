@@ -42,7 +42,7 @@
                         {{-- ログインしているユーザがすでにこの投稿をいいねしているなら --}}
                         @if (Auth::user()->is_favorite($post->id))
                             {{-- いいね解除ボタン --}}
-                            <form action="{{url('/posts/'.$post->id.'/unfavorite')}}" method="post">
+                            <form action="{{asset('/posts/unfavorite/' . $post->id)}}" method="get">
                                 @csrf
                                 <input type='hidden' name='post_id' value="{{$post->id}}">
                                 {{-- submitは後ろに持ってくる --}}
@@ -51,7 +51,7 @@
                         {{-- まだいいねしていなければ --}}
                         @else
                             {{-- いいねボタン --}}
-                            <form action="{{url('/posts/'.$post->id.'/favorite')}}" method="post">
+                            <form action="{{asset('/posts/favorite/' . $post->id)}}" method="get">
                                 @csrf
                                 <input type='hidden' name='post_id' value="{{$post->id}}">
                                 {{-- submitは後ろに持ってくる --}}
