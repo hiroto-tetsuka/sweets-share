@@ -7,7 +7,7 @@
     </div>
     <div>
         <div>
-            <form action="{{asset('login')}}" method="post">
+            <form action="{{asset('/login')}}" method="post">
                 @csrf
                 <div>
                     <p>メールアドレス<input type="email" id="email" name="email" placeholder="sample@mail.com"></p>

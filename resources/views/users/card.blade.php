@@ -13,5 +13,5 @@
 
 {{-- ログアウトボタン --}}
 @if(Auth::id() == $user->id)
-    <a href="{{route('logout.get')}}">ログアウト</a>
+    <a href="{{asset('/logout')}}" method="get">ログアウト</a>
 @endif
