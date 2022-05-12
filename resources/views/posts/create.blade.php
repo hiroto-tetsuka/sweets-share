@@ -6,36 +6,34 @@
     </div>
     <div>
         <div>
-            <form action="{{asset('posts/store/{id}')}}" enctype='multipart/form-data' method="post">
+            {{-- 投稿フォーム --}}
+            <form action="{{asset('/posts/store')}}" enctype='multipart/form-data' method="post">
                 @csrf
-                <div>
-                    {!! Form::label('sweets_image', 'スイーツの写真') !!}
+                
+                {{-- ログインしているユーザのidをhiddenで送る --}}
+                <input type="hidden" name="user_id" value={{ \Auth::id() }}>
+                
+                <div>スイーツの写真
                     <input type="file" id="sweets_image" name="sweets_image">
                 </div>
-                
-                <input type="hidden" value={{ \Auth::id() }} name="user_id">
                
-                <div>
-                    {!! Form::label('sweets_name', 'スイーツの名前') !!}
-                    {!! Form::text('sweets_name', null, ['class' => 'form-control']) !!}
+                <div>スイーツの名前
+                    <input type="text" id="sweets_name" name="sweets_name" placeholder="20文字以内">
                 </div>
-
-                <div>
-                    {!! Form::label('store_name', 'お店の名前') !!}
-                    {!! Form::text('store_name', null, ['class' => 'form-control']) !!}
+                
+                <div>お店の名前
+                    <input type="text" id="store_name" name="store_name" placeholder="20文字以内">
                 </div>
-
-                <div>
-                    {!! Form::label('station', '最寄り駅') !!}
-                    {!! Form::text('station', null, ['class' => 'form-control']) !!}
+                
+                <div>最寄り駅
+                    <input type="text" id="station" name="station" placeholder="〇〇駅">
                 </div>
-
-                <div>
-                    {!! Form::label('comment', 'コメント') !!}
-                    {!! Form::text('comment', null, ['class' => 'form-control']) !!}
+                
+                <div>コメント
+                    <input type="text" id="comment" name="comment" placeholder="40文字以内">
                 </div>
-
-                {!! Form::submit('投稿', ['class' => 'btn btn-primary btn-block']) !!}
+                
+                <input type="submit" id="create_post" value="投稿">
             </form>
         </div>
     </div>

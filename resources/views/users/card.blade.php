@@ -1,10 +1,10 @@
-<div class="card">
-    <div class="card-header">
-        <h3 class="card-title">{{ $user->name }}</h3>
+<div>
+    <div>
+        <h3>{{ $user->name }}</h3>
     </div>
-    <div class="card-body">
+    <div>
         {{-- ユーザのメールアドレスをもとにGravatarを取得して表示 --}}
-        <img class="rounded img-fluid" src="{{ Gravatar::get($user->email, ['size' => 100]) }}" alt="">
+        <img src="{{ Gravatar::get($user->email, ['size' => 100]) }}" alt="">
     </div>
 </div>
 
@@ -13,5 +13,5 @@
 
 {{-- ログアウトボタン --}}
 @if(Auth::id() == $user->id)
-    <a href="{{route('logout.get')}}" class="btn btn-logout">ログアウト</a>
+    <a href="{{route('logout.get')}}">ログアウト</a>
 @endif

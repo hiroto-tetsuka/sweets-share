@@ -4,18 +4,16 @@
     {{-- ログインが確認できたときのトップページ --}}
     @if(Auth::check())
         <div>
-            <aside>
+            <div>
                 <div>
-                    <div>
-                        {{-- ログインしたユーザのユーザ名 --}}
-                        <h3>{{ Auth::user()->name }}</h3>
-                    </div>
-                    <div>
-                        {{-- ログインしたユーザのアイコン --}}
-                        <img src="{{asset('storage/sample.jpeg')}}" alt="">
-                    </div>
+                    {{-- ログインしたユーザのユーザ名 --}}
+                    <h3>{{ Auth::user()->name }}</h3>
                 </div>
-            </aside>
+                <div>
+                    {{-- ログインしたユーザのアイコン --}}
+                    <img src="{{asset('storage/sample.jpeg')}}" alt="">
+                </div>
+            </div>
             <div>
                 {{-- 投稿一覧 --}}
                 @include('posts.posts')

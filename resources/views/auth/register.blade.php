@@ -21,7 +21,7 @@
                 <div>
                     <p>パスワード(確認)<input type="password" id="password_confirmation" name="password_confirmation"></p>
                 </div>
-                <input type="submit" id="submit" name="submit" value="登録">
+                <input type="submit" id="register" value="登録">
             </form>
             <p>すでに登録している方は<a href="{{asset('login')}}">こちら</a></p>
         </div>

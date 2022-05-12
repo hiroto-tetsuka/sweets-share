@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Post;
+use Illuminate\Support\Str;
 
 class PostsController extends Controller
 {
@@ -13,8 +13,7 @@ class PostsController extends Controller
         if (\Auth::check()) { // 認証済みの場合
             // 認証済みユーザを取得
             $user = \Auth::user();
-            // ユーザの投稿の一覧を作成日時の降順で取得
-            // （後のChapterで他ユーザの投稿も取得するように変更しますが、現時点ではこのユーザの投稿のみ取得します）
+            // ユーザとフォロワーの投稿の一覧を作成日時の降順で取得
             $posts = $user->feed_posts()->orderBy('created_at', 'desc')->get();
             $data = [];
             $data = [
@@ -40,11 +39,11 @@ class PostsController extends Controller
     
     public function store(Request $request)
     {
-        // 画像を取得
-        $file_name = $request->sweets_image->getClientOriginalName();
-        
         // 画像を保存
-        $request->sweets_image->storeAs('public', $file_name);
+        $file_name = $request->sweets_image->store('public');
+        // 画像を取得
+        // URLの最後の/以降の名前だけ取得
+        $after_remove_file_name = Str::afterLast($file_name, '/');
         
         $request->validate([
             'sweets_image' => 'required',
@@ -55,7 +54,7 @@ class PostsController extends Controller
         ]);
         
         $post = new Post;
-        $post->sweets_image = $file_name;
+        $post->sweets_image = $after_remove_file_name;
         $post->user_id = $request->user_id;
         $post->sweets_name = $request->sweets_name;
         $post->store_name = $request->store_name;
@@ -64,13 +63,13 @@ class PostsController extends Controller
         $post->save();
         
         $user = \Auth::user();
-        $posts = $user->posts()->orderBy('created_at', 'desc')->paginate(10);
+        $posts = $user->feed_posts()->orderBy('created_at', 'desc')->paginate(10);
         
         // 投稿一覧を表示するページに変数を渡す
         return view('welcome')
-        // $file_nameをsweets_imageに格納し、posts.postsファイルで使えるようにする
-        ->with('sweets_image', $file_name)
-        // $postsをpostsに格納し、posts.postsファイルで使えるようにする
+        // $file_nameをsweets_imageに格納し、welcomeファイルで使えるようにする
+        ->with('sweets_image', $after_remove_file_name)
+        // $postsをpostsに格納し、welcomeファイルで使えるようにする
         ->with('posts',  $posts);
     }
     
@@ -83,8 +82,7 @@ class PostsController extends Controller
         if (\Auth::id() === $post->user_id) {
             $post->delete();
         }
-
-        // 前のURLへリダイレクトさせる
-        return back();
+        // 子のcontroller内のindexメソッドにリダイレクトさせる
+        return self::index();
     }
 }

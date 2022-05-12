@@ -15,7 +15,7 @@
                 <div>
                     <p>パスワード<input type="password" id="password" name="password" placeholder="8文字以上"></p>
                 </div>
-                <input type="submit" id="submit" name="submit" value="ログイン">
+                <input type="submit" id="login" value="ログイン">
             </form>
             {{-- 新規登録ページへのリンク --}}
             <p>登録がまだの方は<a href="{{asset('signup')}}">こちら</a></p>

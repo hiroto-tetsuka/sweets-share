@@ -4,10 +4,13 @@
     background-color: #fcf47c;
     margin: 0px;
     padding: 0px;
-    box-sizing: border-box;
 }
 ul {
     list-style: none;
+}
+img {
+    object-fit: cover;
+    aspect-ratio: 16/9;
 }
 
 /* ヘッダー */
