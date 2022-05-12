@@ -21,9 +21,9 @@ Route::post('/login', 'Auth\LoginController@login');
 Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::group(['prefix' => 'users/{id}'], function () {
-        Route::post('/follow', 'UserFollowController@store')->name('user.follow');
-        Route::delete('/unfollow', 'UserFollowController@destroy')->name('user.unfollow');
+    Route::group(['prefix' => '/users/{id}'], function () {
+        Route::post('/follow', 'UserFollowController@store');
+        Route::post('/unfollow', 'UserFollowController@destroy');
         Route::get('/followings', 'UsersController@followings')->name('users.followings');
         Route::get('/followers', 'UsersController@followers')->name('users.followers');
         Route::get('/favorites', 'UsersController@favorites')->name('users.favorites');

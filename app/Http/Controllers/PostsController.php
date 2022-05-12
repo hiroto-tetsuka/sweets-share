@@ -14,7 +14,7 @@ class PostsController extends Controller
             // 認証済みユーザを取得
             $user = \Auth::user();
             // ユーザとフォロワーの投稿の一覧を作成日時の降順で取得
-            $posts = $user->feed_posts()->orderBy('created_at', 'desc')->get();
+            $posts = $user->feed_posts()->orderBy('created_at', 'desc')->paginate(10);
             $data = [];
             $data = [
                 'user' => $user,
@@ -23,7 +23,7 @@ class PostsController extends Controller
             // Welcomeビューでそれらを表示
             return view('welcome', $data); 
         }else{
-            $posts = Post::orderBy('created_at', 'desc')->get();
+            $posts = Post::orderBy('created_at', 'desc')->paginate(10);
             return view('welcome')->with('posts', $posts);
         }
     }

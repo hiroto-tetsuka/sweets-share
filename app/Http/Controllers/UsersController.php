@@ -11,7 +11,7 @@ class UsersController extends Controller
     public function index()
     {
         // ユーザ一覧をidの降順で取得
-        $users = User::orderBy('id', 'desc')->get();
+        $users = User::orderBy('id', 'desc')->paginate(10);
 
         // ユーザ一覧ビューでそれを表示
         return view('users.index', [
@@ -28,7 +28,7 @@ class UsersController extends Controller
         $user->loadRelationshipCounts();
 
         // ユーザの投稿一覧を作成日時の降順で取得
-        $posts = $user->posts()->orderBy('created_at', 'desc')->get();
+        $posts = $user->posts()->orderBy('created_at', 'desc')->paginate(10);
 
         // ユーザ詳細ビューでそれらを表示
         return view('users.show', [
@@ -47,7 +47,7 @@ class UsersController extends Controller
         $user->loadRelationshipCounts();
         
         // ユーザのフォロー一覧を取得;
-        $followings = $user->followings()->get();
+        $followings = $user->followings()->paginate(10);
         
         // フォロー一覧をビューで表示
         return view('users.followings', [
@@ -64,7 +64,7 @@ class UsersController extends Controller
         
         $user->loadRelationshipCounts();
         
-        $followers = $user->followers()->get();
+        $followers = $user->followers()->paginate(10);
         
         return view('users.followers', [
             'user' => $user,
@@ -82,7 +82,7 @@ class UsersController extends Controller
         // ユーザの件数をロード
         $user->loadRelationshipCounts();
         // ユーザのいいね一覧を取得
-        $posts = $user->feed_favorites()->get();
+        $posts = $user->feed_favorites()->paginate(10);
         // いいね一覧をビューで表示
         return view('users.favorites', [
             'user' => $user,

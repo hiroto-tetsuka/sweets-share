@@ -84,12 +84,6 @@ class User extends Authenticatable
             // 上記以外はフォローする
             $this->followings()->attach($userId);
             return true;
-            
-            // こっちでは動かない？
-            // $userModel = new User;
-            // $userModel->id = $userId;
-            // $userModel->save();
-            // return true;
         }
     }
     
@@ -105,12 +99,6 @@ class User extends Authenticatable
             // ファロー済み、かつ自身でない場合はフォローを外す
             $this->followings()->detach($userId);
             return true;
-            
-            // こっちでは動かない？
-            // $userModel = new User;
-            // $userModel->id = $userId;
-            // $userModel->save();
-            // return true;
         }else{
             // 上記以外は何もしない
             return false;
