@@ -1,30 +1,30 @@
-<ul class="nav nav-tabs nav-justified mb-3">
+<ul>
     {{-- ユーザ詳細タブ --}}
-    <li class="nav-item">
-        <a href="{{ asset('users/show/' . Auth::id(), ['user' => $user->id]) }}" class="nav-link {{ Request::routeIs('users.show') ? 'active' : '' }}">
+    <li>
+        <a href="{{asset('users/show/' . Auth::id())}}">
             投稿
-            <span class="badge badge-secondary">{{ $user->posts_count }}</span>
         </a>
+        <span>{{ $user->posts_count }}</span>
     </li>
     {{-- フォロー一覧タブ --}}
-    <li class="nav-item">
-        <a href="{{ route('users.followings', ['id' => $user->id]) }}" class="nav-link {{ Request::routeIs('users.followings') ? 'active' : '' }}">
+    <li>
+        <a href="{{asset('/users/'.$user->id.'/followings')}}" method="post">
             フォロー
-            <span class="badge badge-secondary">{{ $user->followings_count }}</span>
         </a>
+        <span>{{ $user->followings_count }}</span>
     </li>
     {{-- フォロワー一覧タブ --}}
-    <li class="nav-item">
-        <a href="{{ route('users.followers', ['id' => $user->id]) }}" class="nav-link {{ Request::routeIs('users.followers') ? 'active' : '' }}">
+    <li>
+        <a href="{{ asset('/users/'.$user->id.'/followers')}}" method="post">
             フォロワー
-            <span class="badge badge-secondary">{{ $user->followers_count }}</span>
         </a>
+        <span>{{ $user->followers_count }}</span>
     </li>
-    {{-- いいね一覧 --}}
-    <li class="nav-item">
-        <a href="{{ route('users.favorites', ['id' => $user->id]) }}" class="nav-link {{ Request::routeIs('users.favorites') ? 'active' : '' }}">
+    {{-- いいね一覧タブ --}}
+    <li>
+        <a href="{{ asset('/users/'.$user->id.'/favorites')}}" method="post">
             いいね
-            <span class="badge badge-secondary">{{ $user->favorites_count }}</span>
         </a>
+        <span>{{ $user->favorites_count }}</span>
     </li>
 </ul>

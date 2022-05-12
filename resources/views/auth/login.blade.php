@@ -18,7 +18,7 @@
                 <input type="submit" id="login" value="ログイン">
             </form>
             {{-- 新規登録ページへのリンク --}}
-            <p>登録がまだの方は<a href="{{asset('signup')}}">こちら</a></p>
+            <p>登録がまだの方は<a href="{{asset('/signup')}}">こちら</a></p>
         </div>
     </div>
 </div>

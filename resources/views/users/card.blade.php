@@ -30,6 +30,8 @@
 @endif
 
 {{-- ログアウトボタン --}}
+{{-- ログインしているidがユーザのidと等しければ --}}
 @if(Auth::id() == $user->id)
+    {{-- ログアウトボタンを表示 --}}
     <a href="{{asset('/logout')}}" method="get">ログアウト</a>
 @endif

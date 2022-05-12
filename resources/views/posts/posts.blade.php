@@ -9,7 +9,7 @@
                 <div>
                     <div>
                         {{-- 投稿の所有者のユーザ詳細ページへのリンク --}}
-                        <a href="{{asset('users/show/' . $post->user->id, ['user' => $user->id])}}">{{ $post->user->name }}</a>
+                        <a href="{{asset('users/show/' . $post->user->id)}}">{{ $post->user->name }}</a>
                     </div>
                     <div>
                         {{-- 投稿の作成日時を表示 --}}

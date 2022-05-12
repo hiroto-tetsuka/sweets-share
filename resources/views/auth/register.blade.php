@@ -23,7 +23,7 @@
                 </div>
                 <input type="submit" id="register" value="登録">
             </form>
-            <p>すでに登録している方は<a href="{{asset('login')}}">こちら</a></p>
+            <p>すでに登録している方は<a href="{{asset('/login')}}">こちら</a></p>
         </div>
     </div>
 </div>

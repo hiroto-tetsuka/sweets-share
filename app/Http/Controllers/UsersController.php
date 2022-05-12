@@ -8,6 +8,7 @@ use App\User;
 
 class UsersController extends Controller
 {
+    // ユーザ一覧を表示するアクション
     public function index()
     {
         // ユーザ一覧をidの降順で取得
@@ -19,17 +20,18 @@ class UsersController extends Controller
         ]);
     }
     
+    // ユーザ詳細を表示するアクション
     public function show($id)
     {
         // idの値でユーザを検索して取得
         $user = User::findOrFail($id);
-
+        
         // 関係するモデルの件数をロード
         $user->loadRelationshipCounts();
-
+        
         // ユーザの投稿一覧を作成日時の降順で取得
         $posts = $user->posts()->orderBy('created_at', 'desc')->paginate(10);
-
+        
         // ユーザ詳細ビューでそれらを表示
         return view('users.show', [
             'user' => $user,
@@ -59,13 +61,16 @@ class UsersController extends Controller
     // フォロワー一覧を表示するアクション
     public function followers($id)
     {
-        
+        // idで検索してユーザを取得
         $user = User::findOrFail($id);
         
+        // 関係するモデルの件数をロード
         $user->loadRelationshipCounts();
         
+        // ユーザのフォロワー一覧を取得
         $followers = $user->followers()->paginate(10);
         
+        // フォロワー一覧をビューで表示
         return view('users.followers', [
             'user' => $user,
             'users' => $followers,
@@ -77,12 +82,16 @@ class UsersController extends Controller
     {
         // 空配列を用意
         $user = [];
+        
         // idが一致するユーザを取得
         $user = User::findOrFail($id);
+        
         // ユーザの件数をロード
         $user->loadRelationshipCounts();
+        
         // ユーザのいいね一覧を取得
         $posts = $user->feed_favorites()->paginate(10);
+        
         // いいね一覧をビューで表示
         return view('users.favorites', [
             'user' => $user,

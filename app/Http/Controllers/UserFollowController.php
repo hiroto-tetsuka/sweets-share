@@ -9,8 +9,9 @@ class UserFollowController extends Controller
     // フォローするアクション
     public function store($id)
     {
-        // 認証済みユーザがidのユーザをフォローする
+        // ログインしているユーザがidのユーザをフォローする
         \Auth::user()->follow($id);
+        
         // 前のURLへリダイレクトされる
         return back();
     }
@@ -18,8 +19,9 @@ class UserFollowController extends Controller
     // アンフォローするアクション
     public function destroy($id)
     {
-        // 認証済みユーザがidのユーザをアンフォローする
+        // ログインしているユーザがidのユーザをアンフォローする
         \Auth::user()->unfollow($id);
+        
         // 前のURLへリダイレクトされる
         return back();
     }

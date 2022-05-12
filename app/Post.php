@@ -6,15 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable = ['comment'];
-
-    /**
-     * この投稿を所有するユーザ。（ Userモデルとの関係を定義）
-     */
+    // この投稿を所有するユーザ（Userモデルとの関係を定義）
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+    
     // この投稿をいいねするユーザ（Userモデルとの関係を定義）
     public function favorite_users()
     {
