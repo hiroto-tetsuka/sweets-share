@@ -252,13 +252,15 @@ header {
 }
 #follow {
     margin-top: 10px;
-    background-color: #ffffcc;
-    border-color: #ffffcc;
+    background-color: #ff9900;
+    border-color: #ff9900;
+    cursor: pointer;
 }
 #unfollow {
     margin-top: 10px;
-    background-color: #eeeeee;
-    border-color: #eeeeee;
+    background-color: #FFC7AF;
+    border-color: #FFC7AF;
+    cursor: pointer;
 }
 .navtab {
     display: flex;
