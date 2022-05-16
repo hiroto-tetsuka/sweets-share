@@ -4,20 +4,8 @@
     {{-- ログインが確認できたときのトップページ --}}
     @if(Auth::check())
         <div class="loginTopPage">
-            <div class="loginUser">
-                <div class="userName">
-                    {{-- ログインしたユーザのユーザ名 --}}
-                    <h3>{{ Auth::user()->name }}</h3>
-                </div>
-                <div class="userIcon">
-                    {{-- ログインしたユーザのアイコン --}}
-                    <img src="{{asset('storage/sample.jpeg')}}" alt="">
-                </div>
-            </div>
-            <div>
-                {{-- 投稿一覧 --}}
-                @include('posts.posts')
-            </div>
+            {{-- 投稿一覧 --}}
+            @include('posts.posts')
         </div>
     {{-- ログインが確認できなかったときのトップページ --}}
     @else

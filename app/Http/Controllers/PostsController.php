@@ -115,7 +115,7 @@ class PostsController extends Controller
             $post->delete();
         }
         
-        // このcontroller内のindexメソッドにリダイレクトさせる
-        return self::index();
+        // 元のページにリダイレクトする
+        return back();
     }
 }

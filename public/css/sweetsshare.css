@@ -43,16 +43,17 @@ header {
 /* フッター */
 
 .pageTopBtn {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  padding: 18px;
-  background: rgba(0,0,0,0.5);
-  color: white;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 15px;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border-radius: 50%;
 }
 .pageTopBtn:hover {
-  background: rgba(0,0,0,0.8);
-  color: #fff;
+    background: rgba(0,0,0,0.8);
+    color: #fff;
 }
 
 /* トップページ */
@@ -88,15 +89,28 @@ header {
     width: 100%;
 }
 .btn {
+    font-weight: bold;
     width: 8%;
     padding: 8px 0;
     margin-bottom: 20px;
     font-size: 15px;
-    background-color: #ffffcc;
     border-color: #dddddd;
+    color: #b1921b;
+    border-right: 4px solid #cea82c;
+    border-bottom: 10px solid #987c1e;
+    border-left: 4px solid #ffed8b;
+    border-radius: 0;
+    background: -webkit-gradient(linear, right top, left top, from(#ffd75b), color-stop(30%, #fff5a0), color-stop(40%, #fffabe), color-stop(50%, #ffffdb), color-stop(70%, #fff5a0), to(#fdd456));
+    background: -webkit-linear-gradient(right, #ffd75b 0%, #fff5a0 30%, #fffabe 40%, #ffffdb 50%, #fff5a0 70%, #fdd456 100%);
+    background: linear-gradient(-90deg, #ffd75b 0%, #fff5a0 30%, #fffabe 40%, #ffffdb 50%, #fff5a0 70%, #fdd456 100%);
+    text-shadow: -1px -1px 1px #ffffd9;
 }
 .btn:hover {
-    background-color: #dddddd;
+    margin-top: 5px;
+    color: #b1921b;
+    border-right: 4px solid #cea82c;
+    border-bottom: 7px solid #987c1e;
+    border-left: 4px solid #ffed8b;
 }
 .signItemLeft {
     width: 20%;
@@ -149,20 +163,20 @@ header {
 }
 .cardItem {
     margin: 10px 0;
+    overflow-wrap: break-word; 
 }
 .cardButton {
     display: flex;
     justify-content: space-between;
 }
-.cardComment {
-    overflow-wrap: break-word; 
-}
+
 #favorite {
     display: inline-block;
     padding: 3px 5px;
     color: #ff0000;
     background-color: #ffffbb;
     border-color: #ffffee;
+    cursor: pointer;
 }
 #unfavorite {
     display: inline-block;
@@ -170,13 +184,15 @@ header {
     color: #ff0000;
     background-color: #ffffbb;
     border-color: #ffffee;
+    cursor: pointer;
 }
 #delete {
     display: inline-block;
     padding: 4px 7px;
     color: #000;
-    background-color: #ffffbb;
+    background-color: #ffff66;
     border-color: #ffffee;
+    cursor: pointer;
 }
 
 /* ユーザ一覧 */
@@ -201,14 +217,38 @@ header {
 
 .showUserIcon {
     width: 15%;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.mypageUserName {
+    text-align: center;
+    font-weight: bold;
+    margin: 10px ;
+}
+.followButton{
+    text-align: center;
 }
 .mypage {
     margin: 0 30px;
 }
+.logout {
+    text-align: right;
+}
 #logout {
-    margin-top: 10px;
-    background-color: #eeeeee;
-    border-color: #ffffcc;
+    cursor: pointer;
+    color: #000;
+    border-top: 4px solid #d8dcdc;
+    border-right: 4px solid #666;
+    border-bottom: 4px solid #333;
+    border-left: 4px solid #868888;
+    border-radius: 0;
+    background-image: -webkit-linear-gradient(135deg, #333 0%, #868888 20%, #d8dcdc 34%, white 53%, #666 100%);
+    background-image: linear-gradient(-45deg, #333 0%, #868888 20%, #d8dcdc 34%, white 53%, #666 100%);
+    text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff;
+}
+#logout:hover {
+    text-shadow: 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff;
 }
 #follow {
     margin-top: 10px;
@@ -219,4 +259,10 @@ header {
     margin-top: 10px;
     background-color: #eeeeee;
     border-color: #eeeeee;
+}
+.navtab {
+    display: flex;
+    justify-content: space-evenly;
+    border: 4px ridge rgba(211, 220, 50, .6);
+    padding: 10px 0;
 }

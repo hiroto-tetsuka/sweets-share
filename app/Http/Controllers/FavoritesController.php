@@ -24,11 +24,8 @@ class FavoritesController extends Controller
         // 自分とフォローしている人の投稿を取得
         $posts = $userModel->feed_posts()->orderBy('created_at', 'desc')->get();
         
-        // ビューに投稿のデータを送る
-        return view('welcome')
-        
-        // $postsをpostsとしてwelcomeビューで使用できるようにする
-        ->with('posts', $posts);
+        // 元のページにリダイレクト
+        return back();
     }
     
     // いいねした投稿を削除するアクション
@@ -49,10 +46,7 @@ class FavoritesController extends Controller
         // 自分とフォローしている人の投稿を取得
         $posts = $userModel->feed_posts()->orderBy('created_at', 'desc')->get();
         
-        // ビューに投稿のデータを送る
-        return view('welcome')
-        
-        // $postsをpostsとしてwelcomeビューで使用できるようにする
-        ->with('posts', $posts);
+        // 元のページにリダイレクト
+        return back();
     }
 }

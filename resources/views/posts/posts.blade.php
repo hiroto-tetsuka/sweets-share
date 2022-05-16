@@ -23,7 +23,7 @@
                     </div>
                     <div class="postImg">
                         {{-- 画像をクリックしたら投稿の詳細ページを表示 --}}
-                        <a href="#">
+                        <a href="{{asset('users/show/' . $post->user->id)}}">
                             {{-- 画像 --}}
                             <img src="{{ asset('storage/' . $post->sweets_image) }}" alt="">
                         </a>
@@ -41,7 +41,7 @@
                         {{ $post->station }}
                     </div>
                     {{-- コメント --}}
-                    <div class="cardItem cardComment">
+                    <div class="cardItem">
                         {{ $post->comment }}
                     </div>
                     <div class="cardButton">
