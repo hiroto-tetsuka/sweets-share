@@ -8,29 +8,44 @@
     </head>
     
     <body>
-        {{-- ナビゲーションバー --}}
-        <header>
-            <nav class="header-nav">
+        {{-- ヘッダー --}}
+        <header  id="pageTop">
+            <div class="headerNav">
                 {{-- トップページへのリンク --}}
-                <a href="/"><img src="{{asset('img/logo.png')}}" class="nav-logo" alt=""></a>
-                <ul class="navbar-nav">
-                    @if (Auth::check())
-                        {{-- ユーザ一覧 --}}
-                        <li><a href="{{asset('users/index')}}" class="nav-link">ユーザ一覧</a></li>
-                        {{-- 投稿ボタン --}}
-                        <li><a href="{{asset('posts/create')}}" class="nav-link">投稿</a></li>
-                        {{-- マイページ --}}
-                        <li><a href="{{asset('users/show/' . Auth::id())}}" class="nav-link">マイページ</a></li>
-                    @else
-                        {{-- 新規登録ページへのリンク --}}
-                        <li><a href="{{asset('signup')}}" class="nav-link">新規登録</a></li>
-                        {{-- ログインページへのリンク --}}
-                        <li><a href="{{asset('login')}}" class="nav-link">ログイン</a></li>
-                        
-                    @endif
-                </ul>
-            </nav>
+                <div class="logo">
+                    <a href="/"><img src="{{asset('img/logo.png')}}" alt="logo"></a>
+                </div>
+                <div class="headerMenu">
+                    <ul class="navbarNav">
+                        @if (Auth::check())
+                            <div>
+                                {{-- ユーザ一覧 --}}
+                                <li class="navbarItem"><a href="{{asset('users/index')}}">ユーザ一覧</a></li>
+                            </div>
+                            <div>
+                                {{-- 投稿ボタン --}}
+                                <li class="navbarItem"><a href="{{asset('posts/create')}}">投稿</a></li>
+                            </div>
+                            <div>
+                                {{-- マイページ --}}
+                                <li class="navbarItem"><a href="{{asset('users/show/' . Auth::id())}}">マイページ</a></li>
+                            </div>
+                        @else
+                            <div>
+                                {{-- 新規登録ページへのリンク --}}
+                                <li class="navbarItem"><a href="{{asset('signup')}}">新規登録</a></li>
+                            </div>
+                            <div>
+                                {{-- ログインページへのリンク --}}
+                                <li class="navbarItem"><a href="{{asset('login')}}">ログイン</a></li>
+                            </div>
+                        @endif
+                    </ul>
+                </div>
+            </div>
         </header>
+        
+        {{-- コンテンツ --}}
         <div class="container">
             {{-- エラーメッセージ --}}
             @if (count($errors) > 0)
@@ -43,9 +58,10 @@
             {{-- コンテンツ --}}
             @yield('content')
         </div>
+        
         {{-- フッター --}}
         <footer>
-            <p>画面上部に戻るボタンを表示したい</p>
+            <a href="#pageTop" class="pageTopBtn">△</a>
         </footer>
     </body>
 </html>

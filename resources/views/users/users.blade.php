@@ -1,18 +1,17 @@
 @if (count($users) > 0)
-    <ul>
+    <ul class="indexUserCard">
         @foreach ($users as $user)
-            <li>
-                {{-- ユーザのメールアドレスをもとにGravatarを取得して表示 --}}
-                <img src="{{ Gravatar::get($user->email, ['size' => 50]) }}" alt="">
-                <div>
-                    <div>{{-- ユーザの名前 --}}
+            <li class="userInfo">
+                <a href="{{asset('users/show/' . $user->id, ['user' => $user->id])}}">
+                    <div class="indexUserIcon">
+                        {{-- ユーザのメールアドレスをもとにGravatarを取得して表示 --}}
+                        <img src="{{ Gravatar::get($user->email, ['size' => 50]) }}" alt="">
+                    </div>
+                    <div class="indexUserName">
+                        {{-- ユーザの名前 --}}
                         {{ $user->name }}
                     </div>
-                    <div>
-                        {{-- ユーザ詳細ページへのリンク --}}
-                        <a href="{{asset('users/show/' . $user->id, ['user' => $user->id])}}">ユーザ詳細</a>
-                    </div>
-                </div>
+                </a>
             </li>
         @endforeach
     </ul>

@@ -1,6 +1,7 @@
+
 /* ページ全体 */
 
-* {
+body {
     background-color: #fcf47c;
     margin: 0px;
     padding: 0px;
@@ -9,64 +10,209 @@ ul {
     list-style: none;
 }
 img {
+    width: 100%;
     object-fit: cover;
-    aspect-ratio: 16/9;
+    /*aspect-ratio: 16/9;*/
+}
+header {
+    padding-top: 20px;
 }
 
 /* ヘッダー */
 
-.header-nav {
+.headerNav {
     display: flex;
     align-items: center;
 }
-.nav-logo {
-    width: 80%;
+.headerMenu{
+    margin: 0 0 0 auto;
 }
-.navbar-nav {
+.logo {
+    width: 300px;
+}
+.navbarNav {
     display: flex;
     justify-content: end;
-    width: 100%;
+    width: 90%;
 }
-.nav-link {
+.navbarItem {
     margin-right: 40px;
-    color: black;
     font-size: 20px;
 }
 
-/* トップページ 
+/* フッター */
 
-.home-text {
-    font-size: 30px;
-    margin: 80px 0px;
-    text-align: center;
-    text-decoration: underline;
+.pageTopBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 18px;
+  background: rgba(0,0,0,0.5);
+  color: white;
 }
-.before-signup-img {
+.pageTopBtn:hover {
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+}
+
+/* トップページ */
+
+.topText {
+    font-size: 30px;
+    margin-top: 50px;
+    margin-bottom: 80px;
+    text-align: center;
+}
+.topImg {
     flex-wrap: wrap;
-    display: inline-block;
-    margin: 0px 30px;
+    display: flex;
 }
-.top-img {
+.imgIndex {
     width: 30%;
-    margin-left: 30px;
     margin-bottom: 30px;
+    aspect-ratio: 16/9;
 }
-*/
 
-/* 新規登録
-.register {
+/* 新規登録 */
+
+.entrance {
     text-align: center;
-    font-size: 30px;
-    width: 100%;
-}
-.text-center {
     font-size: 20px;
+}
+.pageTitle {
+    margin: 30px 0;
+}
+.signItem{
+    margin-bottom: 30px;
+    width: 100%;
 }
 .btn {
-    width: 5%;
-    padding: 5px;
+    width: 8%;
+    padding: 8px 0;
+    margin-bottom: 20px;
+    font-size: 15px;
+    background-color: #ffffcc;
+    border-color: #dddddd;
 }
-.form-group {
+.btn:hover {
+    background-color: #ffff88;
+}
+.signItemLeft {
+    width: 20%;
+    display: inline-block;
+}
+.signItemRight {
+    width: 20%;
+    padding: 5px;
+    background-color: #ffffcc;
+    border-color: #444444;
+}
+
+/* ログイン後トップページ */
+
+.userIcon {
+    width: 10%;
+}
+.userName {
+    margin: 20px 0;
+}
+.iconImg {
+    width: 15%;
+}
+.loginTopPage {
+    margin: 0 40px;
+}
+.loginUser {
+    margin-bottom: 80px;
+}
+.postImg {
+    width: 90%;
+    margin-top: 10px;
+}
+.postIndex {
+    display: flex;
+    flex-wrap: wrap;
+}
+.cardTop {
+    display: flex;
+}
+.cardTopFlex {
+    margin-left: 10px;
+}
+.postShow {
+    background-color: #ffffbb;
+    justify-content: center;
+    width: 25%;
+    padding: 5px;
+    margin: 20px;
+}
+.cardItem {
+    margin: 10px 0;
+}
+.cardButton {
+    display: flex;
     justify-content: space-between;
 }
-*/
+#favorite {
+    display: inline-block;
+    padding: 3px 5px;
+    color: #ff0000;
+    background-color: #ffffbb;
+    border-color: #ffffee;
+}
+#unfavorite {
+    display: inline-block;
+    padding: 4px 7px;
+    color: #ff0000;
+    background-color: #ffffbb;
+    border-color: #ffffee;
+}
+#delete {
+    display: inline-block;
+    padding: 4px 7px;
+    color: #000;
+    background-color: #ffffbb;
+    border-color: #ffffee;
+}
+
+/* ユーザ一覧 */
+
+.indexUserCard {
+    margin: 50px 500px;
+}
+.indexUserIcon {
+    width: 30%;
+    margin-left: 10px;
+}
+.indexUserName {
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+.userInfo {
+    padding-top: 10px;
+    background-color: #ffffdd;
+}
+
+/* マイページ */
+
+.showUserIcon {
+    width: 15%;
+}
+.mypage {
+    margin: 0 30px;
+}
+#logout {
+    margin-top: 10px;
+    background-color: #eeeeee;
+    border-color: #ffffcc;
+}
+#follow {
+    margin-top: 10px;
+    background-color: #ffffcc;
+    border-color: #ffffcc;
+}
+#unfollow {
+    margin-top: 10px;
+    background-color: #eeeeee;
+    border-color: #eeeeee;
+}
