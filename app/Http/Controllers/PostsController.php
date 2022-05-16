@@ -18,7 +18,7 @@ class PostsController extends Controller
             $user = \Auth::user();
             
             // ユーザとフォロワーの投稿を作成日時の降順で取得
-            $posts = $user->feed_posts()->orderBy('created_at', 'desc')->paginate(10);
+            $posts = $user->feed_posts()->orderBy('created_at', 'desc')->get();
             
             // 空配列を用意
             $data = [];
@@ -35,7 +35,7 @@ class PostsController extends Controller
         // ログインが確認できなければ
         }else{
             // 投稿を作成日時の降順で取得
-            $posts = Post::orderBy('created_at', 'desc')->paginate(10);
+            $posts = Post::orderBy('created_at', 'desc')->get();
             
             // ビューに$postsを送る
             return view('welcome')->with('posts', $posts);
@@ -91,7 +91,7 @@ class PostsController extends Controller
         $user = \Auth::user();
         
         // そのユーザとフォローしているユーザの投稿を作成日時の降順で取得
-        $posts = $user->feed_posts()->orderBy('created_at', 'desc')->paginate(10);
+        $posts = $user->feed_posts()->orderBy('created_at', 'desc')->get();
         
         // 投稿一覧を表示するページに変数を渡す
         return view('welcome')

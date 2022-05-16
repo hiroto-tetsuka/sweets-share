@@ -6,7 +6,7 @@
         </div>
         <div class="showUserIcon">
             {{-- ユーザのメールアドレスをもとにGravatarを取得して表示 --}}
-            <img src="{{ Gravatar::get($user->email, ['size' => 100]) }}" alt="">
+            <img src="{{asset('storage/sample.jpeg')}}" alt="">
         </div>
     </div>
     {{-- フォロー/アンフォロー --}}

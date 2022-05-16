@@ -22,7 +22,7 @@ class FavoritesController extends Controller
         $userModel->favorite($user_id, $post_id);
         
         // 自分とフォローしている人の投稿を取得
-        $posts = $userModel->feed_posts()->orderBy('created_at', 'desc')->paginate(10);
+        $posts = $userModel->feed_posts()->orderBy('created_at', 'desc')->get();
         
         // ビューに投稿のデータを送る
         return view('welcome')
@@ -47,7 +47,7 @@ class FavoritesController extends Controller
         $userModel->unfavorite($user_id, $post_id);
         
         // 自分とフォローしている人の投稿を取得
-        $posts = $userModel->feed_posts()->orderBy('created_at', 'desc')->paginate(10);
+        $posts = $userModel->feed_posts()->orderBy('created_at', 'desc')->get();
         
         // ビューに投稿のデータを送る
         return view('welcome')
