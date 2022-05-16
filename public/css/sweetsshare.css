@@ -5,6 +5,7 @@ body {
     background-color: #fcf47c;
     margin: 0px;
     padding: 0px;
+    overflow-x: hidden;
 }
 ul {
     list-style: none;
@@ -32,7 +33,6 @@ header {
 }
 .navbarNav {
     display: flex;
-    justify-content: end;
     width: 90%;
 }
 .navbarItem {
@@ -153,6 +153,9 @@ header {
 .cardButton {
     display: flex;
     justify-content: space-between;
+}
+.cardComment {
+    overflow-wrap: break-word; 
 }
 #favorite {
     display: inline-block;

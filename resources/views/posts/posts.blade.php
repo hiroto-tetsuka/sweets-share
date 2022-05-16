@@ -41,8 +41,8 @@
                         {{ $post->station }}
                     </div>
                     {{-- コメント --}}
-                    <div class="cardItem">
-                        {{ nl2br(e($post->comment)) }}
+                    <div class="cardItem cardComment">
+                        {{ $post->comment }}
                     </div>
                     <div class="cardButton">
                         <div>

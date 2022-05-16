@@ -9,7 +9,7 @@
     
     <body>
         {{-- ヘッダー --}}
-        <header  id="pageTop">
+        <header id="pageTop">
             <div class="headerNav">
                 {{-- トップページへのリンク --}}
                 <div class="logo">
