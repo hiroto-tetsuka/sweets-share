@@ -2,8 +2,15 @@
     <div>
         <div class="showUserIcon">
             {{-- ユーザのメールアドレスをもとにGravatarを取得して表示 --}}
-            <img src="{{asset('storage/sample.jpeg')}}" alt="">
+            <img src="{{Storage::url('/user_icon/'.$user->user_icon)}}" alt="">
         </div>
+        
+        <div class="editUserIcon">
+            <a href="{{url('/edit')}}">
+                アイコン画像を編集
+            </a>
+        </div>
+        
         <div class="mypageUserName">
             {{-- ユーザの名前 --}}
             {{ $user->name }}

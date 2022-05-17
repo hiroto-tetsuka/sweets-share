@@ -175,4 +175,17 @@ class User extends Authenticatable
         // このユーザがいいねした投稿に絞り込む
         return Post::whereIn('id', $favoriteIds);
     }
+    
+    // このユーザの情報を取得
+    public static function findUserInfo($id)
+    {
+        // $idのユーザ情報を変数に代入
+        $user_info = self::find($id);
+        
+        // 件数をロード
+        $user_info->loadRelationshipCounts();
+        
+        // ユーザ情報を返す
+        return $user_info;
+    }
 }

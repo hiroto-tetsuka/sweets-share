@@ -15,6 +15,8 @@ Route::get('/', 'PostsController@index');
 
 Route::get('/signup', 'Auth\RegisterController@showRegistrationForm');
 Route::post('/signup', 'Auth\RegisterController@register');
+Route::get('/edit', 'PostsController@showEdit');
+Route::post('/edit', 'PostsController@edit');
 
 Route::get('/login', 'Auth\LoginController@showLoginForm');
 Route::post('/login', 'Auth\LoginController@login');

@@ -17,4 +17,10 @@ class Post extends Model
     {
         return $this->belongsToMany(User::class, 'favorites', 'post_id', 'user_id')->withTimestamps();
     }
+    
+    // この投稿をいいねしたユーザの情報を取得するメソッド
+    public static function getUsersInfo()
+    {
+        return self::orderBy('created_at', 'desc')->get();
+    }
 }

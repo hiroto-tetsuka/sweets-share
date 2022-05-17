@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use Illuminate\Support\Str;
+use App\User;
 
 class PostsController extends Controller
 {
@@ -34,8 +35,8 @@ class PostsController extends Controller
             
         // ログインが確認できなければ
         }else{
-            // 投稿を作成日時の降順で取得
-            $posts = Post::orderBy('created_at', 'desc')->get();
+            // PostモデルのgetUsersInfo関数を呼び出す
+            $posts = Post::getUsersInfo();
             
             // ビューに$postsを送る
             return view('welcome')->with('posts', $posts);
@@ -57,13 +58,6 @@ class PostsController extends Controller
     // 投稿をデータベースに登録するアクション
     public function store(Request $request)
     {
-        // publicフォルダから画像を保存
-        $file_name = $request->sweets_image->store('public');
-        
-        // 画像を取得
-        // URLの末尾の/以降の名前だけを取得
-        $after_remove_file_name = Str::afterLast($file_name, '/');
-        
         // 調整
         $request->validate([
             'sweets_image' => 'required',
@@ -72,6 +66,13 @@ class PostsController extends Controller
             'station' => 'required|max:20',
             'comment' => 'required|max:40',
         ]);
+        
+        // publicフォルダから画像を保存
+        $file_name = $request->sweets_image->store('public');
+        
+        // 画像を取得
+        // URLの末尾の/以降の名前だけを取得
+        $after_remove_file_name = Str::afterLast($file_name, '/');
         
         // Postクラスをインスタンス化
         $post = new Post;
@@ -93,6 +94,7 @@ class PostsController extends Controller
         // そのユーザとフォローしているユーザの投稿を作成日時の降順で取得
         $posts = $user->feed_posts()->orderBy('created_at', 'desc')->get();
         
+        
         // 投稿一覧を表示するページに変数を渡す
         return view('welcome')
         
@@ -100,7 +102,7 @@ class PostsController extends Controller
         ->with('sweets_image', $after_remove_file_name)
         
         // $postsをpostsに格納し、welcomeファイルで使えるようにする
-        ->with('posts',  $posts);
+        ->with('posts', $posts);
     }
     
     // 投稿を削除するアクション
@@ -117,5 +119,40 @@ class PostsController extends Controller
         
         // 元のページにリダイレクトする
         return back();
+    }
+    public function showEdit()
+    {
+        // get
+        return view('users.edit');
+    }
+    
+    public function edit(Request $request)
+    {
+        // バリデーション
+        $request->validate([
+            'file_path' => 'required',
+        ]);
+        
+        // 画像ファイルを保存
+        $file_name = $request->file_path->store('public/user_icon');
+        
+        // 画像を取得
+        $after_remove_file_name = Str::afterLast($file_name, '/');
+        
+        // ユーザモデルからログイン中のidと一致するものをアップデート
+        User::where('id', \Auth::id())->update([
+            'user_icon' => $after_remove_file_name
+        ]);
+        
+        // ログイン中のユーザを取得
+        $user = User::findUserInfo(\Auth::id());
+        
+        // ユーザの投稿を取得
+        $posts = $user->feed_posts()->orderBy('created_at', 'desc')->get();
+        
+        // リダイレクト
+        return view('users.show')
+        ->with('posts', $posts)
+        ->with('user', $user);
     }
 }

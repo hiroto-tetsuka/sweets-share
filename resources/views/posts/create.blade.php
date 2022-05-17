@@ -26,7 +26,7 @@
             </div>
             
             <div class="signItem"><div class="signItemLeft">最寄り駅</div>
-                <input type="text" id="station" name="station" placeholder="〇〇駅" class="signItemRight">
+                <input type="text" id="station" name="station" placeholder="〇〇駅、20文字以内" class="signItemRight">
             </div>
             
             <div class="signItem"><div class="signItemLeft">コメント</div>
