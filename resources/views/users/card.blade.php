@@ -45,7 +45,7 @@
         {{-- ログインしているidがユーザのidと等しければ --}}
         @if(Auth::id() == $user->id)
             {{-- ログアウトボタンを表示 --}}
-            <form action="{{asset('/logout')}}" method="get">
+            <form action="{{asset('/logout')}}" method="post">
                 @csrf
                 <input type="submit" id="logout" value="ログアウト">
             </form>

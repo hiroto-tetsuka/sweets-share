@@ -19,6 +19,7 @@ class PostsController extends Controller
             $user = \Auth::user();
             
             // postsテーブルにusersテーブルをjoinする。postsテーブルのuser_idとusersテーブルのidを基準に繋げる。
+            // これ以上簡単に書く方法はない。
             $post_user_icon = \DB::table('posts')->join('users', 'posts.user_id', '=', 'users.id')->get();
             
             // ユーザとフォロワーの投稿を作成日時の降順で取得
@@ -99,7 +100,6 @@ class PostsController extends Controller
         // そのユーザとフォローしているユーザの投稿を作成日時の降順で取得
         $posts = $user->feed_posts()->orderBy('created_at', 'desc')->get();
         
-        
         // 投稿一覧を表示するページに変数を渡す
         return view('welcome')
         
@@ -115,7 +115,7 @@ class PostsController extends Controller
     {
         // idの値で投稿を検索して取得
         $post = \App\Post::findOrFail($id);
-
+        
         // ログインしているユーザがその投稿のユーザであれば
         if (\Auth::id() === $post->user_id) {
             // 投稿を削除
@@ -123,7 +123,8 @@ class PostsController extends Controller
         }
         
         // 元のページにリダイレクトする
-        return back();
+        // return back();
+        return redirect()->back();
     }
     public function showEdit()
     {
