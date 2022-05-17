@@ -1,15 +1,18 @@
 <div class="mypage">
     <div>
         <div class="showUserIcon">
-            {{-- ユーザのメールアドレスをもとにGravatarを取得して表示 --}}
-            <img src="{{Storage::url('/user_icon/'.$user->user_icon)}}" alt="">
+            {{-- ユーザアイコン --}}
+            <img src="{{Storage::url('/user_icon/' . $user->user_icon)}}" alt="">
         </div>
         
-        <div class="editUserIcon">
-            <a href="{{url('/edit')}}">
-                アイコン画像を編集
-            </a>
-        </div>
+        {{-- ログイン中のidが詳細を表示しているユーザのidと等しければアイコン画像編集ボタンを表示 --}}
+        @if(Auth::id() == $user->id)
+            <div class="editUserIcon">
+                <a href="{{url('/edit')}}">
+                    アイコン画像を編集
+                </a>
+            </div>
+        @endif
         
         <div class="mypageUserName">
             {{-- ユーザの名前 --}}

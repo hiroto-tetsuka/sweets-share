@@ -261,3 +261,14 @@ header {
 .editUserIcon {
     text-align: center;
 }
+
+.userIconUpload {
+    text-align: center;
+}
+.fileUpload {
+    margin-top: 20px;
+}
+#file {
+    cursor: pointer;
+    background-color: #ffffee;
+}

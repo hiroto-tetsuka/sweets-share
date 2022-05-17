@@ -18,6 +18,9 @@ class PostsController extends Controller
             // ログインしているユーザを取得
             $user = \Auth::user();
             
+            // postsテーブルにusersテーブルをjoinする。postsテーブルのuser_idとusersテーブルのidを基準に繋げる。
+            $post_user_icon = \DB::table('posts')->join('users', 'posts.user_id', '=', 'users.id')->get();
+            
             // ユーザとフォロワーの投稿を作成日時の降順で取得
             $posts = $user->feed_posts()->orderBy('created_at', 'desc')->get();
             
@@ -27,6 +30,7 @@ class PostsController extends Controller
             // ユーザと投稿を配列に格納
             $data = [
                 'user' => $user,
+                'post_user_icon' => $post_user_icon,
                 'posts' => $posts,
             ];
             
@@ -39,7 +43,8 @@ class PostsController extends Controller
             $posts = Post::getUsersInfo();
             
             // ビューに$postsを送る
-            return view('welcome')->with('posts', $posts);
+            return view('welcome')
+            ->with('posts', $posts);
         }
     }
     

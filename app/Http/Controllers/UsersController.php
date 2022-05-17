@@ -23,8 +23,8 @@ class UsersController extends Controller
     // ユーザ詳細を表示するアクション
     public function show($id)
     {
-        // ログイン中のidを引数としてUserモデルのfindUserInfo関数を呼び出し、ユーザ情報を取得する
-        $user = User::findUserInfo(\Auth::id());
+        // idを引数としてUserモデルのfindUserInfo関数を呼び出し、ユーザ情報を取得する
+        $user = User::findUserInfo($id);
         
         // ユーザの投稿一覧を作成日時の降順で取得
         $posts = $user->posts()->orderBy('created_at', 'desc')->get();

@@ -4,8 +4,8 @@
             <li class="userInfo">
                 <a href="{{asset('users/show/' . $user->id, ['user' => $user->id])}}">
                     <div class="indexUserIcon">
-                        {{-- ユーザのメールアドレスをもとにGravatarを取得して表示 --}}
-                        <img src="{{ Gravatar::get($user->email, ['size' => 50]) }}" alt="">
+                        {{-- ユーザアイコン --}}
+                        <img src="{{Storage::url('/user_icon/' . $user->user_icon)}}" alt="">
                     </div>
                     <div class="indexUserName">
                         {{-- ユーザの名前 --}}

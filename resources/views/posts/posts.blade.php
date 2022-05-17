@@ -3,12 +3,12 @@
     <ul class="postIndex">
         {{-- すべての投稿を表示 --}}
         @foreach ($posts as $post)
-            <a href="{{asset('users/show/' . $post->user->id)}}">
+            <a href="{{asset('/users/show/' . $post->user->id)}}">
                 <li class="postShow">
                     <div class="cardTop">
                         <div class="iconImg">
-                            {{-- 投稿の所有者のメールアドレスをもとにGravatarを取得して表示 --}}
-                            <img src="{{ Gravatar::get($post->user->email, ['size' => 50]) }}" alt="">
+                            {{-- ユーザアイコン --}}
+                            <img src="{{Storage::url('/user_icon/' . $post->user->user_icon)}}" alt="">
                         </div>
                         <div class="cardTopFlex">
                             <div>
