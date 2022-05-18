@@ -19,7 +19,7 @@ header {
     padding-top: 20px;
 }
 .errorMessage {
-    background-color: #ffffcc;
+    background-color: #ffc0cb;
     text-align: center;
 }
 
@@ -162,7 +162,7 @@ header {
 }
 .cardItem {
     margin: 10px 0;
-    overflow-wrap: break-word; 
+    overflow-wrap: break-word;
 }
 .cardButton {
     display: flex;
@@ -196,6 +196,9 @@ header {
 
 /* ユーザ一覧 */
 
+.index_flex {
+    display: flex;
+}
 .indexUserCard {
     margin: 50px 500px;
 }
@@ -209,6 +212,7 @@ header {
 }
 .userInfo {
     padding-top: 10px;
+    margin-bottom: 10px;
     background-color: #ffffdd;
 }
 

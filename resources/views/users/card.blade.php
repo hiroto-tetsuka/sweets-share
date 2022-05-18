@@ -2,11 +2,12 @@
     <div>
         @if($user->user_icon == null)
             <div class="showUserIcon">
-                {{-- ユーザアイコン --}}
+                {{-- デフォルトユーザアイコン --}}
                 <img src="{{asset('storage/default_icon.png')}}" alt="">
             </div>
         @else
             <div class="showUserIcon">
+                {{-- ユーザアイコン --}}
                 <img src="{{Storage::url('/user_icon/' . $user->user_icon)}}" alt="">
             </div>
         @endif
@@ -14,9 +15,7 @@
         {{-- ログイン中のidが詳細を表示しているユーザのidと等しければアイコン画像編集ボタンを表示 --}}
         @if(Auth::id() == $user->id)
             <div class="editUserIcon">
-                <a href="{{url('/edit')}}">
-                    アイコン画像を編集
-                </a>
+                <a href="{{url('/edit')}}">アイコン画像を編集</a>
             </div>
         @endif
         
@@ -32,17 +31,11 @@
             {{-- ログインしているユーザがすでにフォローしていれば --}}
             @if(Auth::user()->is_following($user->id))
                 {{-- アンフォローボタンを表示 --}}
-                <form action="{{asset('/users/' . $user->id . '/unfollow')}}" method="post">
-                    @csrf
-                    <input type="submit" id="unfollow" value="アンフォロー">
-                </form>
+                <button class="unfollow_button" value="{{$user->id}}" id="unfollow">アンフォロー</button>
             {{-- ログインしているユーザがまだフォローしていなければ --}}
             @else
                 {{-- フォローボタンを表示 --}}
-                <form action="{{asset('/users/' . $user->id . '/follow')}}" method="post">
-                    @csrf
-                    <input type="submit" id="follow" value="フォロー">
-                </form>
+                <button class="follow_button" value="{{$user->id}}" id="follow">フォロー</button>
             @endif
         @endif
     </div>
@@ -58,3 +51,15 @@
         @endif
     </div>
 </div>
+
+{{-- フォロー --}}
+<form class="follow_form" action="{{asset('/users/' . $user->id . '/follow')}}" method="POST">
+    @csrf
+    <input type="hidden" id="follow_id" name="user_id" value="">
+</form>
+
+{{-- アンフォロー --}}
+<form class="unfollow_form" action="{{asset('/users/' . $user->id . '/unfollow')}}" method="POST">
+    @csrf
+    <input type="hidden" id="unfollow_id" name="user_id" value="">
+</form>

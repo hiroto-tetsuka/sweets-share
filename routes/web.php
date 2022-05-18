@@ -32,14 +32,16 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/favorites', 'UsersController@favorites');
     });
     
-    Route::post('/posts/favorite/{id}', 'FavoritesController@store');
-    Route::post('/posts/unfavorite/{id}', 'FavoritesController@delete');
+    Route::post('/posts/favorite', 'FavoritesController@store');
+    Route::post('/posts/unfavorite', 'FavoritesController@delete');
     
     Route::get('/users/index', 'UsersController@index');
     Route::get('/users/show/{id}', 'UsersController@show');
     
     Route::get('/posts/create', 'PostsController@create');
-    Route::post('/posts/destroy/{id}', 'PostsController@destroy');
+    Route::post('/posts/destroy', 'PostsController@destroy');
     Route::post('/posts/store', 'PostsController@store');
+    
+    Route::get('/posts/show/{id}', 'PostsController@showPost');
     
 });

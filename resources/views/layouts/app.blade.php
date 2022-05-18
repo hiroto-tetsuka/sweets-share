@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title>スイーツシェア</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        {{-- cssファイルを読み込む --}}
         <link rel="stylesheet" href="{{asset('css/sweetsshare.css')}}">
     </head>
     
@@ -65,5 +66,9 @@
         <footer>
             <a href="#pageTop" class="pageTopBtn">△</a>
         </footer>
+        
+        {{-- JavaScriptファイルととjQueryを読み込む --}}
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="{{asset('js/main.js')}}"></script>
     </body>
 </html>

@@ -111,8 +111,11 @@ class PostsController extends Controller
     }
     
     // 投稿を削除するアクション
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        // 投稿のidを取得
+        $id = $request->post_id;
+        
         // idの値で投稿を検索して取得
         $post = \App\Post::findOrFail($id);
         
@@ -159,6 +162,17 @@ class PostsController extends Controller
         // リダイレクト
         return view('users.show')
         ->with('posts', $posts)
+        ->with('user', $user);
+    }
+    
+    public function showPost($id)
+    {
+        $user = \Auth::user();
+        
+        $post = Post::findOrFail($id);
+        
+        return view('posts.show')
+        ->with('post', $post)
         ->with('user', $user);
     }
 }

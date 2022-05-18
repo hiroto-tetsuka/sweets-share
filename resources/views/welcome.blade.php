@@ -4,8 +4,15 @@
     {{-- ログインが確認できたときのトップページ --}}
     @if(Auth::check())
         <div class="loginTopPage">
-            {{-- 投稿一覧 --}}
-            @include('posts.posts')
+            {{-- 投稿が1つ以上あれば --}}
+            @if (count($posts) > 0)
+                {{-- 投稿一覧 --}}
+                @include('posts.posts')
+            @else
+                {{-- 表示する投稿がなければ --}}
+                <div class="topNoPost">ようこそ {{$user->name}} さん！</div>
+                <div class="topNoPost">お気に入りのスイーツを共有しましょう！</div>
+            @endif
         </div>
     {{-- ログインが確認できなかったときのトップページ --}}
     @else
