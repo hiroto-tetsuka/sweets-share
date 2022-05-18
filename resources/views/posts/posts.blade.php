@@ -83,4 +83,7 @@
             </a>
         @endforeach
     </ul>
+@else
+    <div class="topNoPost">ようこそ {{$user->name}} さん！</div>
+    <div class="topNoPost">お気に入りのスイーツを共有しましょう！</div>
 @endif

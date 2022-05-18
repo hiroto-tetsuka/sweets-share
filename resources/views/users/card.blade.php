@@ -1,9 +1,15 @@
 <div class="mypage">
     <div>
-        <div class="showUserIcon">
-            {{-- ユーザアイコン --}}
-            <img src="{{Storage::url('/user_icon/' . $user->user_icon)}}" alt="">
-        </div>
+        @if($user->user_icon == null)
+            <div class="showUserIcon">
+                {{-- ユーザアイコン --}}
+                <img src="{{asset('storage/default_icon.png')}}" alt="">
+            </div>
+        @else
+            <div class="showUserIcon">
+                <img src="{{Storage::url('/user_icon/' . $user->user_icon)}}" alt="">
+            </div>
+        @endif
         
         {{-- ログイン中のidが詳細を表示しているユーザのidと等しければアイコン画像編集ボタンを表示 --}}
         @if(Auth::id() == $user->id)
