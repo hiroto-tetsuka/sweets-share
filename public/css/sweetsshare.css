@@ -168,7 +168,11 @@ header {
     display: flex;
     justify-content: space-between;
 }
-
+/*
+.bottom_button {
+    margin-top: auto;
+}
+*/
 #favorite {
     display: inline-block;
     padding: 3px 5px;

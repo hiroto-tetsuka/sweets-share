@@ -100,14 +100,17 @@ class PostsController extends Controller
         // そのユーザとフォローしているユーザの投稿を作成日時の降順で取得
         $posts = $user->feed_posts()->orderBy('created_at', 'desc')->get();
         
+        // URLを指定してリダイレクトする
+        return redirect('/');
+        
         // 投稿一覧を表示するページに変数を渡す
-        return view('welcome')
+        // return view('welcome')
         
         // $file_nameをsweets_imageに格納し、welcomeファイルで使えるようにする
-        ->with('sweets_image', $after_remove_file_name)
+        // ->with('sweets_image', $after_remove_file_name)
         
         // $postsをpostsに格納し、welcomeファイルで使えるようにする
-        ->with('posts', $posts);
+        // ->with('posts', $posts);
     }
     
     // 投稿を削除するアクション

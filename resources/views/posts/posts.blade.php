@@ -56,18 +56,18 @@
                         {{-- ログインしているユーザがすでにこの投稿をいいねしているなら --}}
                         @if (Auth::user()->is_favorite($post->id))
                             {{-- いいね解除ボタン --}}
-                            <button class="unfavorite_button" value="{{$post->id}}" id="unfavorite">♥</button>
+                            <button class="unfavorite_button bottom_button" value="{{$post->id}}" id="unfavorite">♥</button>
                         {{-- まだいいねしていなければ --}}
                         @else
                             {{-- いいねボタン --}}
-                            <button class="favorite_button" value="{{$post->id}}" id="favorite">♡</button>
+                            <button class="favorite_button bottom_button" value="{{$post->id}}" id="favorite">♡</button>
                         @endif
                     </div>
                     <div>
                         {{-- ログイン中のidがこの投稿のユーザidと一緒なら --}}
                         @if (Auth::id() == $post->user_id)
                             {{-- 投稿削除ボタン --}}
-                            <button class="delete_button" value="{{$post->id}}" id="delete">削除</button>
+                            <button class="delete_button bottom_button" value="{{$post->id}}" id="delete">削除</button>
                         @endif
                     </div>
                 </div>
