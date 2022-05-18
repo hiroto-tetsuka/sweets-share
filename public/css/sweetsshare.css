@@ -18,6 +18,10 @@ img {
 header {
     padding-top: 20px;
 }
+.errorMessage {
+    background-color: #ffffcc;
+    text-align: center;
+}
 
 /* ヘッダー */
 
