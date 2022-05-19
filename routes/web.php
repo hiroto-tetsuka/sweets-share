@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'PostsController@index');
+Route::get('/', 'PostsController@index')->name('login');
 
 Route::get('/signup', 'Auth\RegisterController@showRegistrationForm');
 Route::post('/signup', 'Auth\RegisterController@register');
