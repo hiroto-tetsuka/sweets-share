@@ -328,3 +328,6 @@ header {
 .showPostFollow {
     margin-left: auto;
 }
+.showPostFollowButton {
+    width:100px;
+}

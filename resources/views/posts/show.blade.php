@@ -73,14 +73,17 @@
                     @if(Auth::user()->is_following($post->user->id))
                     
                         {{-- アンフォローボタンを表示 --}}
+                        <div class="showPostFollowButton">
                         <button class="unfollow_button" value="{{$post->user->id}}" id="unfollow">アンフォロー</button>
-                        
+                        </div>
                     {{-- ログインしているユーザがまだフォローしていなければ --}}
                     @else
                     
                         {{-- フォローボタンを表示 --}}
+                        {{-- アンフォローボタンを表示 --}}
+                        <div class="showPostFollowButton">
                         <button class="follow_button" value="{{$post->user->id}}" id="follow">フォロー</button>
-                        
+                        </div>
                     @endif
                 @endif
             </div>
