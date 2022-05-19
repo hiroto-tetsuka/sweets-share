@@ -99,8 +99,8 @@ $('.unfollow_button').on('click', function() {
     const target_id = $(this).val();
     
     // idがfollow_idのvalueにtarget_idを代入
-    $('#follow_id').val(target_id);
+    $('#unfollow_id').val(target_id);
     
     // classがfollow_formのものを送信
-    $('.follow_form').submit();
+    $('.unfollow_form').submit();
 });

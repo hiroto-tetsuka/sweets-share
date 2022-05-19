@@ -105,11 +105,7 @@ class PostsController extends Controller
         
         // 投稿一覧を表示するページに変数を渡す
         // return view('welcome')
-        
-        // $file_nameをsweets_imageに格納し、welcomeファイルで使えるようにする
         // ->with('sweets_image', $after_remove_file_name)
-        
-        // $postsをpostsに格納し、welcomeファイルで使えるようにする
         // ->with('posts', $posts);
     }
     
@@ -162,10 +158,13 @@ class PostsController extends Controller
         // ユーザの投稿を取得
         $posts = $user->feed_posts()->orderBy('created_at', 'desc')->get();
         
+        // URLを指定してリダイレクトする
+        return redirect('/users/show/'.\Auth::id());
+        
         // リダイレクト
-        return view('users.show')
-        ->with('posts', $posts)
-        ->with('user', $user);
+        // return view('users.show')
+        // ->with('posts', $posts)
+        // ->with('user', $user);
     }
     
     public function showPost($id)

@@ -1,83 +1,93 @@
 @extends('layouts.app')
 
 @section('content')
-    
-    <div>
+<div class="showPostFlex">
+    <div class="showPostImg">
         <img src="{{ asset('storage/' . $post->sweets_image) }}" alt="">
-    </div>
-    
-    <div>
+        
         {{-- ログインしているユーザがすでにこの投稿をいいねしているなら --}}
         @if (Auth::user()->is_favorite($post->id))
         
             {{-- いいね解除ボタン --}}
-            <button class="unfavorite_button" value="{{$post->id}}" id="unfavorite">♥</button>
+            <div class="showPostFavorite">
+                <button class="unfavorite_button" value="{{$post->id}}" id="unfavorite">♥</button>
+            </div>
             
         {{-- まだいいねしていなければ --}}
         @else
-        
+            
             {{-- いいねボタン --}}
-            <button class="favorite_button" value="{{$post->id}}" id="favorite">♡</button>
+            <div class="showPostFavorite">
+                <button class="favorite_button" value="{{$post->id}}" id="favorite">♡</button>
+            </div>
             
         @endif
     </div>
     
-    <div>
-        {{$post->sweets_name}}
-    </div>
-    
-    <div>
-        {{$post->store_name}}
-    </div>
-    
-    <div>
-        {{$post->station}}
-    </div>
-    
-    <div>
-        {{$post->comment}}
-    </div>
-    
-    <div>
-        <a href="{{asset('/users/show/' . $post->user->id)}}">
-            @if($post->user->user_icon == null)
-                <div class="iconImg">
-                    {{-- ユーザアイコン --}}
-                    <img src="{{asset('storage/default_icon.png')}}" alt="">
-                </div>
-            @else
-                <div class="iconImg">
-                    {{-- デフォルトユーザアイコン --}}
-                    <img src="{{Storage::url('/user_icon/' . $post->user->user_icon)}}" alt="">
-                </div>
-            @endif
-        </a>
-    </div>
-    
-    <div>
-        {{$post->user->name}}
-    </div>
-    
-    <div>
-        {{-- フォロー/アンフォロー --}}
-        {{-- ログインしているidがそのユーザのidと等しくなければ --}}
-        @if(Auth::id() != $post->user->id)
+    <div class="showPostFlexRight">
+        <div class="showPostPosts">
+            <div>スイーツの名前：
+                {{$post->sweets_name}}
+            </div>
+            
+            <div>お店の名前：
+                {{$post->store_name}}
+            </div>
+            
+            <div>最寄り駅：
+                {{$post->station}}
+            </div>
+            
+            <div>コメント：
+                {{$post->comment}}
+            </div>
+        </div>
         
-            {{-- ログインしているユーザがすでにフォローしていれば --}}
-            @if(Auth::user()->is_following($post->user->id))
+        <div class="userIconNameFollow">
+            <div class="showPostUserIcon">
+                <a href="{{asset('/users/show/' . $post->user->id)}}">
+                    @if($post->user->user_icon == null)
+                        <div class="showPostIcon">
+                            {{-- ユーザアイコン --}}
+                            <img src="{{asset('storage/default_icon.png')}}" alt="">
+                        </div>
+                    @else
+                        <div class="showPostIcon">
+                            {{-- デフォルトユーザアイコン --}}
+                            <img src="{{Storage::url('/user_icon/' . $post->user->user_icon)}}" alt="">
+                        </div>
+                    @endif
+                </a>
+            </div>
             
-                {{-- アンフォローボタンを表示 --}}
-                <button class="unfollow_button" value="{{$post->user->id}}" id="unfollow">アンフォロー</button>
-                
-            {{-- ログインしているユーザがまだフォローしていなければ --}}
-            @else
+            <div class="showPostUserName">
+                {{$post->user->name}}
+            </div>
             
-                {{-- フォローボタンを表示 --}}
-                <button class="follow_button" value="{{$post->user->id}}" id="follow">フォロー</button>
+            <div class="showPostFollow">
+                {{-- フォロー/アンフォロー --}}
+                {{-- ログインしているidがそのユーザのidと等しくなければ --}}
+                @if(Auth::id() != $post->user->id)
                 
-            @endif
-        @endif
+                    {{-- ログインしているユーザがすでにフォローしていれば --}}
+                    @if(Auth::user()->is_following($post->user->id))
+                    
+                        {{-- アンフォローボタンを表示 --}}
+                        <button class="unfollow_button" value="{{$post->user->id}}" id="unfollow">アンフォロー</button>
+                        
+                    {{-- ログインしているユーザがまだフォローしていなければ --}}
+                    @else
+                    
+                        {{-- フォローボタンを表示 --}}
+                        <button class="follow_button" value="{{$post->user->id}}" id="follow">フォロー</button>
+                        
+                    @endif
+                @endif
+            </div>
+        </div>
     </div>
+</div>
+
 @endsection
 
 {{-- いいね --}}

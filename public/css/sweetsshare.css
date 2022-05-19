@@ -193,7 +193,7 @@ header {
     display: inline-block;
     padding: 4px 7px;
     color: #000;
-    background-color: #ffff66;
+    background-color: #ffffdd;
     border-color: #ffffee;
     cursor: pointer;
 }
@@ -288,4 +288,43 @@ header {
 #file {
     cursor: pointer;
     background-color: #ffffee;
+}
+
+/* 投稿詳細 */
+
+.showPostFlex {
+    margin-top: 20px;
+    display: flex;
+}
+.showPostImg {
+    margin: 0 30px;
+    width: 50%;
+}
+.showPostFavorite {
+    text-align: right;
+    margin-top: 5px;
+}
+.showPostFlexRight {
+    width: 50%;
+}
+.showPostPosts {
+    line-height: 2.0;
+    overflow-wrap: break-word;
+}
+.userIconNameFollow {
+    width: 90%;
+    margin-top: 10%;
+    display: flex;
+}
+.showPostUserIcon {
+    transform: scale(0.5);
+}
+.showPostIcon {
+    height: 0px;
+}
+.showPostUserName {
+    transform: translate(-30px, 10px);
+}
+.showPostFollow {
+    margin-left: auto;
 }
