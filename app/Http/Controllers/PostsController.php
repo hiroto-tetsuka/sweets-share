@@ -10,35 +10,46 @@ use App\User;
 class PostsController extends Controller
 {
     // 投稿一覧を表示するアクション
-    public function index()
+    public function index(Request $request)
     {
-        // ログインが確認できたら
-        if (\Auth::check()) {
+        if($request->topAllFollow == "ALL"){
+            // PostモデルのgetUsersInfo関数を呼び出す
+            $posts = Post::getUsersInfo();
             
-            // ログインしているユーザを取得
-            $user = \Auth::user();
+            // ビューに$postsを送る
+            return view('welcome')
+            ->with('posts', $posts);
             
-            // postsテーブルにusersテーブルをjoinする。postsテーブルのuser_idとusersテーブルのidを基準に繋げる。
-            // これ以上簡単に書く方法はない。
-            $post_user_icon = \DB::table('posts')->join('users', 'posts.user_id', '=', 'users.id')->get();
+        }elseif($request->topAllFollow == "FOLLOW"){
             
-            // ユーザとフォロワーの投稿を作成日時の降順で取得
-            $posts = $user->feed_posts()->orderBy('created_at', 'desc')->get();
+            if (\Auth::check()) {
+                
+                // ログインしているユーザを取得
+                $user = \Auth::user();
+                
+                // postsテーブルにusersテーブルをjoinする。postsテーブルのuser_idとusersテーブルのidを基準に繋げる。
+                // これ以上簡単に書く方法はない。
+                $post_user_icon = \DB::table('posts')->join('users', 'posts.user_id', '=', 'users.id')->get();
+                
+                // ユーザとフォロワーの投稿を作成日時の降順で取得
+                $posts = $user->feed_posts()->orderBy('created_at', 'desc')->get();
+                
+                // 空配列を用意
+                $data = [];
+                
+                // ユーザと投稿を配列に格納
+                $data = [
+                    'user' => $user,
+                    'post_user_icon' => $post_user_icon,
+                    'posts' => $posts,
+                ];
+                
+                // Welcomeビューでそれらを表示
+                return view('welcome', $data); 
+                
+            // ログインが確認できなければ
+            }
             
-            // 空配列を用意
-            $data = [];
-            
-            // ユーザと投稿を配列に格納
-            $data = [
-                'user' => $user,
-                'post_user_icon' => $post_user_icon,
-                'posts' => $posts,
-            ];
-            
-            // Welcomeビューでそれらを表示
-            return view('welcome', $data); 
-            
-        // ログインが確認できなければ
         }else{
             // PostモデルのgetUsersInfo関数を呼び出す
             $posts = Post::getUsersInfo();

@@ -93,12 +93,13 @@ header {
     width: 100%;
 }
 .btn {
+    cursor: pointer;
     font-weight: bold;
     width: 8%;
     padding: 8px 0;
     margin-bottom: 20px;
     font-size: 15px;
-    border-color: #dddddd;
+    border-color: #eb6100;
     color: #fff;
     background-color: #eb6100;
 }
@@ -123,6 +124,9 @@ header {
     text-align: center;
     margin-top: 20px;
     font-size: 30px;
+}
+.topNoPostMessage {
+    margin-top: 60px;
 }
 .userIcon {
     width: 10%;
@@ -180,6 +184,7 @@ header {
     background-color: #ffffbb;
     border-color: #ffffee;
     cursor: pointer;
+    border: none;
 }
 #unfavorite {
     display: inline-block;
@@ -188,6 +193,8 @@ header {
     background-color: #ffffbb;
     border-color: #ffffee;
     cursor: pointer;
+    border: none;
+    font-size: 20px;
 }
 #delete {
     display: inline-block;
@@ -243,19 +250,7 @@ header {
     text-align: right;
 }
 #logout {
-    cursor: pointer;
-    color: #000;
-    border-top: 4px solid #d8dcdc;
-    border-right: 4px solid #666;
-    border-bottom: 4px solid #333;
-    border-left: 4px solid #868888;
-    border-radius: 0;
-    background-image: -webkit-linear-gradient(135deg, #333 0%, #868888 20%, #d8dcdc 34%, white 53%, #666 100%);
-    background-image: linear-gradient(-45deg, #333 0%, #868888 20%, #d8dcdc 34%, white 53%, #666 100%);
-    text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff;
-}
-#logout:hover {
-    text-shadow: 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff;
+    padding: 5px 0;
 }
 #follow {
     margin-top: 10px;
@@ -330,4 +325,26 @@ header {
 }
 .showPostFollowButton {
     width:100px;
+}
+
+/* ログイン後トップページ */
+
+.changeButton {
+    font-size: 20px;
+}
+.loginTopButton {
+    margin: 20px 0 40px 0;
+    justify-content: center;
+    display: flex;
+}
+.allButton {
+    margin-right: 10px;
+}
+.topFollowButton {
+    margin-left: 10px;
+}
+.allFollowButton {
+    cursor: pointer;
+    background-color: #ffaa00;
+    border-color: #ffaa00; 
 }

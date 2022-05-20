@@ -46,7 +46,7 @@
             {{-- ログアウトボタンを表示 --}}
             <form action="{{asset('/logout')}}" method="post">
                 @csrf
-                <input type="submit" id="logout" value="ログアウト">
+                <input type="submit" class="btn" id="logout" value="ログアウト">
             </form>
         @endif
     </div>

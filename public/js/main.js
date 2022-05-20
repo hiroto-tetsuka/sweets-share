@@ -104,3 +104,28 @@ $('.unfollow_button').on('click', function() {
     // classがfollow_formのものを送信
     $('.unfollow_form').submit();
 });
+
+// スクロールしたらトップに戻るボタンを表示
+$(function() {
+    
+    var topBtn = $('.pageTopBtn');
+    
+    topBtn.hide();
+    
+    // スクロールが100に達したらボタン表示
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+            topBtn.fadeIn();
+        } else {
+            topBtn.fadeOut();
+        }
+    });
+    
+    // スクロールしてトップ
+    topBtn.click(function () {
+        $('body,html').animate({
+            scrollTop: 0
+        }, 500);
+        return false;
+    });
+});
