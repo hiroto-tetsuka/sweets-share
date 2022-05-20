@@ -270,6 +270,9 @@ header {
     border: 4px ridge rgba(211, 220, 50, .6);
     padding: 10px 0;
 }
+.navtab input:checked + .navItem {
+    background-color: #000000;
+}
 .editUserIcon {
     text-align: center;
 }
@@ -347,4 +350,12 @@ header {
     cursor: pointer;
     background-color: #ffaa00;
     border-color: #ffaa00; 
+}
+
+/* ユーザ詳細 */
+
+.showUserMessage {
+    font-size: 20px;
+    margin-bottom: 100px;
+    text-align: center;
 }
